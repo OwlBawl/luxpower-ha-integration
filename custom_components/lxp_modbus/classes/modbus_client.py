@@ -2,12 +2,19 @@ import asyncio
 import logging
 import time as time_lib
 from contextlib import suppress
+from typing import Optional
 
 from homeassistant.helpers.update_coordinator import UpdateFailed
 
 from ..const import *
 from .lxp_request_builder import LxpRequestBuilder
 from .lxp_response import LxpResponse
+
+try:
+    from pymodbus.client import ModbusSerialClient
+    PYMODBUS_AVAILABLE = True
+except ImportError:
+    PYMODBUS_AVAILABLE = False
 
 from ..constants.hold_registers import (
     H_AC_CHARGE_START_TIME, H_AC_CHARGE_END_TIME, H_AC_CHARGE_START_TIME_1, H_AC_CHARGE_END_TIME_1,
@@ -52,12 +59,13 @@ def _is_data_sane(registers: dict, register_type: str) -> bool:
     return True
 
 class LxpModbusApiClient:
-    """A client for communicating with a LuxPower inverter."""
+    """A client for communicating with a LuxPower inverter via TCP."""
 
     def __init__(self, host: str, port: int, dongle_serial: str, inverter_serial: str, lock: asyncio.Lock, 
                  block_size: int = 125, connection_retries: int = DEFAULT_CONNECTION_RETRIES,
                  skip_initial_data: bool = True):
-        """Initialize the API client."""
+        """Initialize the TCP API client."""
+        self._protocol = PROTOCOL_TCP
         self._host = host
         self._port = port
         self._dongle_serial = dongle_serial
@@ -427,4 +435,282 @@ class LxpModbusApiClient:
                 await asyncio.sleep(1)
 
         _LOGGER.error("Failed to write register %s after %d attempts.", register, self._connection_retries)
+        return False
+
+
+class LxpModbusRtuClient:
+    """
+    A client for communicating with a LuxPower inverter via RTU (RS-485).
+    
+    This client uses STANDARD Modbus RTU protocol (not the custom TCP protocol).
+    
+    Key differences from TCP client:
+    - Uses pymodbus standard Modbus RTU implementation
+    - No custom packet headers (0xA1 0x1A)
+    - No dongle/inverter serial numbers required
+    - Addressing via Slave ID only
+    - Standard Modbus CRC-16 (not custom)
+    - Direct register addressing
+    
+    Protocol specifications (per LuxPower documentation):
+    - Baud Rate: 19200 bps (default)
+    - Data Bits: 8
+    - Parity: None
+    - Stop Bits: 1
+    - Function Codes: 0x03 (Hold), 0x04 (Input), 0x06 (Write Single)
+    - Register Addresses: Hold (7-261), Input (0-232)
+    - Minimum Poll Interval: 1 second
+    """
+
+    def __init__(self, serial_port: str, baudrate: int, parity: str, stopbits: int, 
+                 bytesize: int, slave_id: int, lock: asyncio.Lock,
+                 block_size: int = 125, connection_retries: int = DEFAULT_CONNECTION_RETRIES):
+        """Initialize the RTU API client."""
+        if not PYMODBUS_AVAILABLE:
+            raise ImportError("pymodbus is required for RTU communication. Install with: pip install pymodbus")
+        
+        # Validate slave ID range per Modbus specification
+        if not 1 <= slave_id <= 247:
+            raise ValueError(f"Slave ID must be between 1 and 247, got {slave_id}")
+        
+        self._protocol = PROTOCOL_RTU
+        self._serial_port = serial_port
+        self._baudrate = baudrate
+        self._parity = parity
+        self._stopbits = stopbits
+        self._bytesize = bytesize
+        self._slave_id = slave_id
+        self._lock = lock
+        self._block_size = block_size
+        self._connection_retries = connection_retries
+        self._last_good_input_regs = {}
+        self._last_good_hold_regs = {}
+        self._connection_retry_count = 0
+        self._last_successful_connection = None
+        self._connection_failure_count = 0
+        self._client: Optional[ModbusSerialClient] = None
+
+    def _get_client(self) -> ModbusSerialClient:
+        """Get or create Modbus RTU client configured per LuxPower protocol specification."""
+        if self._client is None:
+            self._client = ModbusSerialClient(
+                port=self._serial_port,
+                baudrate=self._baudrate,  # Protocol spec: 19200 bps default
+                parity=self._parity,      # Protocol spec: 'N' (no parity)
+                stopbits=self._stopbits,  # Protocol spec: 1 stop bit
+                bytesize=self._bytesize,  # Protocol spec: 8 data bits
+                timeout=3,                # 3 second timeout for serial operations
+                strict=False              # Allow recovery from transient errors
+            )
+        return self._client
+
+    def _close_client(self):
+        """Close the Modbus RTU client."""
+        if self._client is not None:
+            try:
+                self._client.close()
+            except Exception as e:
+                _LOGGER.debug(f"Error closing RTU client: {e}")
+            finally:
+                self._client = None
+
+    async def _async_read_registers_rtu(self, register: int, count: int, function_code: int) -> dict:
+        """Read registers via RTU in executor to avoid blocking."""
+        def _sync_read():
+            try:
+                client = self._get_client()
+                if not client.connect():
+                    _LOGGER.warning("Failed to connect to RTU device")
+                    return {}
+                
+                if function_code == 3:  # Holding registers
+                    result = client.read_holding_registers(address=register, count=count, slave=self._slave_id)
+                elif function_code == 4:  # Input registers
+                    result = client.read_input_registers(address=register, count=count, slave=self._slave_id)
+                else:
+                    _LOGGER.error(f"Unsupported function code: {function_code}")
+                    return {}
+                
+                if result.isError():
+                    _LOGGER.debug(f"RTU read error for registers {register}-{register+count-1}: {result}")
+                    return {}
+                
+                # Convert to dictionary format
+                registers_dict = {}
+                for i, value in enumerate(result.registers):
+                    registers_dict[register + i] = value
+                
+                _LOGGER.debug(f"RTU read success: registers {register}-{register+count-1}, got {len(registers_dict)} values")
+                return registers_dict
+                
+            except Exception as e:
+                _LOGGER.warning(f"Exception during RTU read of registers {register}-{register+count-1}: {e}")
+                return {}
+        
+        # Run blocking pymodbus call in executor
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(None, _sync_read)
+
+    def get_recovery_stats(self) -> dict:
+        """Get connection statistics for monitoring."""
+        return {
+            "protocol": "RTU",
+            "connection_retry_count": self._connection_retry_count,
+            "connection_failure_count": self._connection_failure_count,
+            "last_successful_connection": self._last_successful_connection
+        }
+
+    async def async_get_data(self) -> dict:
+        """Fetch data from the inverter via RTU."""
+        _LOGGER.debug("RTU Client: Polling the inverter for new data...")
+        
+        connection_success = False
+        connection_retry = False
+        
+        try:
+            async with self._lock:
+                # Try to establish connection with retry logic
+                for retry in range(self._connection_retries):
+                    try:
+                        if retry > 0:
+                            _LOGGER.info(f"RTU connection retry attempt {retry}/{self._connection_retries}...")
+                            connection_retry = True
+                            await asyncio.sleep(2)
+                        
+                        # Test connection
+                        client = self._get_client()
+                        if client.connect():
+                            connection_success = True
+                            break
+                        else:
+                            if retry < self._connection_retries - 1:
+                                _LOGGER.warning(f"RTU connection attempt {retry + 1} failed")
+                                self._close_client()
+                            else:
+                                raise ConnectionError("Failed to connect to RTU device")
+                                
+                    except Exception as e:
+                        if retry < self._connection_retries - 1:
+                            _LOGGER.warning(f"RTU connection attempt failed: {e}")
+                            self._close_client()
+                        else:
+                            raise
+                
+                if connection_success:
+                    self._last_successful_connection = time_lib.time()
+                    self._connection_failure_count = 0
+                    if connection_retry:
+                        self._connection_retry_count += 1
+                        _LOGGER.info(f"Successfully reconnected via RTU after {retry} attempts")
+                
+                newly_polled_input_regs = {}
+                newly_polled_hold_regs = {}
+                
+                try:
+                    # Poll INPUT registers (function code 4)
+                    for reg in range(0, TOTAL_REGISTERS, self._block_size):
+                        count = min(self._block_size, TOTAL_REGISTERS - reg)
+                        regs = await self._async_read_registers_rtu(reg, count, 4)
+                        if regs:
+                            newly_polled_input_regs.update(regs)
+                    
+                    # Poll HOLD registers (function code 3)
+                    for reg in range(0, TOTAL_REGISTERS, self._block_size):
+                        count = min(self._block_size, TOTAL_REGISTERS - reg)
+                        regs = await self._async_read_registers_rtu(reg, count, 3)
+                        if regs:
+                            newly_polled_hold_regs.update(regs)
+                
+                except Exception as e:
+                    _LOGGER.warning(f"Error reading RTU registers: {e}")
+                
+                # Update last known good data
+                if newly_polled_input_regs:
+                    self._last_good_input_regs.update(newly_polled_input_regs)
+                
+                if newly_polled_hold_regs:
+                    self._last_good_hold_regs.update(newly_polled_hold_regs)
+                
+                return {"input": self._last_good_input_regs, "hold": self._last_good_hold_regs}
+        
+        except Exception as ex:
+            self._connection_failure_count += 1
+            self._close_client()
+            
+            last_success_str = "never"
+            if self._last_successful_connection:
+                elapsed_time = time_lib.time() - self._last_successful_connection
+                hours, remainder = divmod(elapsed_time, 3600)
+                minutes, seconds = divmod(remainder, 60)
+                last_success_str = f"{int(hours)}h {int(minutes)}m {int(seconds)}s ago"
+            
+            _LOGGER.error(f"RTU polling failure: {ex}. Consecutive failures: {self._connection_failure_count}. Last success: {last_success_str}")
+            
+            # Return cached data if available
+            if self._last_good_input_regs and self._last_good_hold_regs and self._connection_failure_count <= 5:
+                _LOGGER.warning("Returning cached data due to temporary RTU connection failure")
+                return {"input": self._last_good_input_regs, "hold": self._last_good_hold_regs}
+            else:
+                if self._connection_failure_count <= 3:
+                    _LOGGER.warning("No cached data available, returning empty data structure")
+                    return {"input": {}, "hold": {}}
+                else:
+                    raise UpdateFailed(f"Error communicating with inverter via RTU: {ex}")
+
+    async def async_write_register(self, register: int, value: int) -> bool:
+        """Write a single register value to the inverter via RTU."""
+        def _sync_write():
+            try:
+                client = self._get_client()
+                if not client.connect():
+                    _LOGGER.warning("Failed to connect to RTU device for write")
+                    return False
+                
+                # Write single holding register
+                result = client.write_register(address=register, value=value, slave=self._slave_id)
+                
+                if result.isError():
+                    _LOGGER.warning(f"RTU write error for register {register}: {result}")
+                    return False
+                
+                # Verify the write by reading back
+                verify_result = client.read_holding_registers(address=register, count=1, slave=self._slave_id)
+                if verify_result.isError():
+                    _LOGGER.warning(f"RTU write verification failed for register {register}")
+                    return False
+                
+                if verify_result.registers[0] == value:
+                    _LOGGER.info(f"Successfully wrote register {register} with value {value} via RTU")
+                    return True
+                else:
+                    _LOGGER.warning(f"RTU write mismatch: sent={value}, read={verify_result.registers[0]}")
+                    return False
+                    
+            except Exception as e:
+                _LOGGER.error(f"Exception during RTU write to register {register}: {e}")
+                return False
+        
+        for attempt in range(self._connection_retries):
+            try:
+                async with self._lock:
+                    _LOGGER.debug(f"RTU write attempt {attempt + 1}/{self._connection_retries} for register {register} with value {value}")
+                    
+                    # Run blocking pymodbus call in executor
+                    loop = asyncio.get_event_loop()
+                    success = await loop.run_in_executor(None, _sync_write)
+                    
+                    if success:
+                        return True
+                    
+                    if attempt < self._connection_retries - 1:
+                        await asyncio.sleep(1)
+                        self._close_client()
+                        
+            except Exception as ex:
+                _LOGGER.error(f"Exception during RTU write attempt {attempt + 1}: {ex}")
+                self._close_client()
+                if attempt < self._connection_retries - 1:
+                    await asyncio.sleep(1)
+        
+        _LOGGER.error(f"Failed to write register {register} via RTU after {self._connection_retries} attempts")
         return False

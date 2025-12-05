@@ -1,0 +1,3349 @@
+{\rtf1\ansi\deff3\adeflang1025
+{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\froman\fprq2\fcharset0 Liberation Serif{\*\falt Times New Roman};}{\f4\fswiss\fprq2\fcharset0 Liberation Sans{\*\falt Arial};}{\f5\fswiss\fprq0\fcharset0 Lucida Sans;}}
+{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;\red153\green204\blue255;}
+{\stylesheet{\s0\snext0\rtlch\af7\afs24\alang1081 \ltrch\lang1033\langfe2052\hich\af3\loch\nowidctlpar\hyphpar0\aspalpha\ltrpar\cf0\f3\fs24\lang1033\dbch\af6\langfe2052 Normal;}
+{\s1\sbasedon24\snext21\rtlch\afs48\ab \ltrch\loch\fs48\b heading 1;}
+{\*\cs15\snext15\loch\super endnote reference;}
+{\*\cs16\snext16\loch\super footnote reference;}
+{\*\cs17\snext17 Endnote Characters;}
+{\*\cs18\snext18 Footnote Characters;}
+{\*\cs19\snext19\loch\cf9\ul\ulc0 Hyperlink;}
+{\s20\sbasedon0\snext21\loch\sb0\sa283\brdrt\brdrnone\brdrl\brdrnone\brdrb\brdrdb\brdrw7\brdrcf15\brsp0\brdrr\brdrnone\fs12 Horizontal Line;}
+{\s21\sbasedon0\snext21\loch\sb0\sa283 Body Text;}
+{\s22\sbasedon0\snext22\loch\i envelope return;}
+{\s23\sbasedon21\snext23 Table Contents;}
+{\s24\sbasedon0\snext21\rtlch\afs28 \ltrch\hich\af4\loch\sb240\sa283\keepn\f4\fs28 Heading;}
+{\s25\sbasedon0\snext25\rtlch\af5 \ltrch\loch\noline Index;}
+{\s26\sbasedon0\snext26\rtlch\af5\afs24\ai \ltrch\loch\sb120\sa120\noline\fs24\i caption;}
+{\s27\sbasedon21\snext27\rtlch\af5 \ltrch List;}
+}{\*\generator LibreOffice/25.2.3.2$Linux_AARCH64 LibreOffice_project/520$Build-2}{\info{\creatim\yr0\mo0\dy0\hr0\min0}{\revtim\yr0\mo0\dy0\hr0\min0}{\printim\yr0\mo0\dy0\hr0\min0}}{\*\userprops}
+\hyphauto1\viewscale100\formshade\nobrkwrptbl{\*\pgdscno2}\paperh16838\paperw11906\margl1134\margr567\margt567\margb567\sectd\sbknone\sftnnar\saftnnrlc\sectunlocked1\pgwsxn11906\pghsxn16838\marglsxn1134\margrsxn567\margtsxn567\margbsxn567\ftnbj\ftnstart1\ftnrstcont\ftnnar\fet\aftnrstcont\aftnstart1\aftnnrlc
+{\*\ftnsep\chftnsep}\pgndec\pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+Modbus RTU Protocol\line }{\loch\b\loch
+Administrator\line 2025/6/13}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+Version Changes Date of\line change}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Responsib\line le\line person}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Remark}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V00 First version 2024.02.23\line V01 Definition modifications on Hold reg19 and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Hold reg 20.\line Add Hold 21 register as the Permit Service\line function.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.04.24 Mason\line Chloe}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V02 Add Hold233 uFuntion4. DryContactorMultiplex bit4-\line 7,Select dry contact multiplexing function}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.05.07 JiaLuo}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V03 Add Input206}{\dbch
+\u12289\'3f}{\loch
+207}{\dbch
+\u65292\'2c}{\loch
+AC couple power for S-\line phase and T-phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.05.14 Mason\line Chloe}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V04 1}{\dbch
+\u12289\'3f}{\loch
+Add Hold248~251,CT ratio and direction\line for WattNodemeter\line 2}{\dbch
+\u12289\'3f}{\loch
+Add Hold233 uFuntion4 .uExCTPosition bit8-9\line External power grid CT settings\line 3}{\dbch
+\u12289\'3f}{\loch
+Add Hold252 Used for NEC120% Rule BusBar\line current limiting setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.06.05 LJQ}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V05 Add Hold110 CTSampleRatio}{\dbch
+\u12289\'3f}{\loch
+PVCTSampleRatio 2024.06.28 Guofei}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V06 Add Hold233 Bit10}{\dbch
+\u65306\'3a}{\loch
+EN50549 F-stop\line opening and closing of over frequency load\line shedding logic}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.07.05 Mason}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V07 1. Added hold253: DeltaSOC, used to set the\line hysteresis of battery SOC\line 2.Added hold254: DeltaVolt, used to set the\line hysteresis of the battery Volt}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.08.26 Qinghui\line Wang}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V08 1}{\dbch
+\u12289\'3f}{\loch
+Add hold120 bit8}{\dbch
+\u65306\'3a}{\loch
+\line SeparateZeroExportEn\line 2}{\dbch
+\u12289\'3f}{\loch
+Add Rule 24(TOR),25(Denmark DK2)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.09.11 Mason}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V09 1}{\dbch
+\u12289\'3f}{\loch
+Add hold255 Bit3-7 Used to read\line WattNode meter frequency}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.10.16 JiaLuo}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V10 1}{\dbch
+\u12289\'3f}{\loch
+Add hold224 bit11-15: added a new LCD\line Machine Model Code}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.11.16 LJQ}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V11 1}{\dbch
+\u12289\'3f}{\loch
+Modify Hold224 definition 2024.11.26 Jialuo}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V12\line 1. Added input214, input215, and input216\line to store three temperatures\line 2. Added input217-231 to store the voltage\line and power, daily energy, and total energy of\line PV4-PV6}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.12.13 WQH}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V13\line 1. Added an option in bit 1 - 3 of hold 120\line for 12K: AC charging Enable bit (both time\line period and SOC/Volt are required);\line 2. Added hold 256 - 259 to store Generator\line start time and end time;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2024.12.16 Walter}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V14\line 1. Added input232,used to display Smart\line load power\line 2. Added input210,Remaining seconds of\line one click charging process}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+20241217 LJX}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V15\line 1. For 12K, Change the CT ratio setting bits\line 5-6 and 12-13 of hold110 to\line CTSampleRatioL2 and CTSampleRatioH2, and\line merge them into a 4-bit CTSampleRatio to\line increase the CT ratio option settings.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+20250106 Guofei}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V16}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1. Add Bit3 and Bit4 to Input register 77 to\line control the power flow in SmartLoad\line applications; Bit4}{\dbch
+\u65306\'3a }{\loch
+The user enables\line smartload and the machine meets the\line activation condition set to 1; Bit3: If Bit4 is\line set to 1 and the smartload power is greater}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+20250109 LJX}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+than 0, set it to 1 and display the power flow;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2. Add Bit5, Bit6, and Bit7 to Input register 77\line as flag bits for displaying EPS side load, grid\line side load, and total load power on the\line monitoring homepage, respectively;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+3.Add the Input174 register Bit10 as a flag to\line indicate whether the generator quick start\line function is displayed}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V17 Add hold260 as the alarm voltage setting\line value for BUS overvoltage point Guofei 20250211}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V18}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1. Added input176}{\dbch
+\u12289\'3f}{\loch
+177}{\dbch
+\u12289\'3f}{\loch
+178 to display the\line historical events of three-phase\line ExceptionReason1, ExceptionReason2,\line ChgDischgDisabReason;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2. Add Trip_LV low-voltage LCD11 to the LCD\line coding definition}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+LSR 20250214}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V19}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+New Hold261 register: Recovery discharge\line threshold setting register (including voltage\line and SOC). The recovery of battery low\line warning point, off grid discharge cut-off\line point, and grid connected discharge cut-off\line point will all share the same threshold.\line Discharge recovery point=discharge cut-off\line point+discharge recovery threshold}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+LJX 20250221}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V20 Added Input 105 bit4 to determine the status\line of the oil engine dry node 20250327 Jialuo}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V21\line Use Bit0~2 of HOLD251 as external CT\line direction for three-phase inverter 20250424 LJR}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V22}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1. Update the grid connection regulations\line list by adding the US, EU, and Brazil\line versions.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2. If the current regulation is the PoLand,\line reuse the hold124 and hold135 registers\line for droop settings. The range is [2, 12]\line percent, and the reading remains\line unchanged.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+20250613 LJQ}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+V23 1.Increase the type of grid for the three-\line phase inverter(HOLD 205) 20250614 LJR}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+Directory\line 1. Introduction to the Modbus RTU protocol ............................................}{\loch
+3\line 1) Message Format ......................................................................................................3\line 2) Byte Order ...............................................................................................................3\line 3) Requests and Responses ....................................................................................... 3\line }{\loch\b\loch
+2. Communication Configuration ................................................................ }{\loch
+7\line }{\loch\b\loch
+3. Register Mapping Table.............................................................................}{\loch
+8\line 1) Input Register ..........................................................................................................8\line 2) Hold Register ..........................................................................................................17\line }{\loch\b\loch
+4. Appendix ...................................................................................................}{\loch
+34\line 1) Definition of the operation mode of on/off energy storage all in one machine . 34\line 2) Fault and Alarm Code Definitions .........................................................................35\line 3) On-grid Regulatory Mapping Table .......................................................................40\line 4) LCD Definition Table ...............................................................................................40}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+c}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+2 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+1. Introduction to the Modbus RTU protocol\line 1) Message Format}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+Address Function Code Data CRC checksum\line }{\loch
+1 byte 1 byte 1-252 byte Low byte High byte}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Table 1 Message Format}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+The Modbus protocol utilizes several function codes, including:\line Function Code 0x03: Read Holding Registers\line Function Code 0x04: Read Input Registers\line Function Code 0x06: Write Single Holding Register\line Function Code 0x10: Write Multiple Holding Registers}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+2) Byte Order\line Start bit Data Stop bit}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1 Bit0 Bit1 Bit2 Bit3 Bit4 Bit5 Bit6 Bit7 1\line }{\loch\b\loch
+Table 2 Byte Order}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+3) Requests and Responses}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Responses include normal responses and exception responses, the exception codes are defined as\line follows:}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Exception code Description of the exception Remark}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0x01 Illegal Function Secondary does not recognize the function\line code}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0x02 Illegal Data Address The data address does not match the length}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0x03 Illegal Data Value The data value is out of bounds or the\line number of registers is incorrect}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0x04 Secondary read and write failed Read and write errors}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0x06 Secondary Busy Secondary busy\line }{\loch\b\loch
+Table 3 Exception Code Definitions}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+3 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+a) Read the hold and input registers\line }{\loch\b\loch
+Request Normal Response Exception Response\line Address Address Address}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+Function code(0x03/0x04}{\dbch\ab\dbch
+\u65289\'29 }{\loch\b\loch
+Function Code(0x03/0x04}{\dbch\ab\dbch
+\u65289\'29 }{\loch\b\loch
+Function Code(0x83/0x84)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SN[0] SN[0] SN[0]\line SN[1] SN[1] SN[1]\line SN[2] SN[2] SN[2]\line SN[3] SN[3] SN[3]\line SN[4] SN[4] SN[4]\line SN[5] SN[5] SN[5]\line SN[6] SN[6] SN[6]\line SN[7] SN[7] SN[7]\line SN[8] SN[8] SN[8]\line SN[9] SN[9] SN[9]}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Start address A low byte Start address A low byte Start address A low byte\line Start address A high byte Start address A high byte Start address A high byte}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Number of registers N low bytes Number of bytes Exception code\line Number of registers N high bytes Register A value is low byte CRC checks low bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+CRC checks low bytes Register A value high bytes CRC checks high bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+CRC checks high bytes Register A+1 value low bytes\line Register A+1 value high bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{
+\u8230\'85\u8230\'85}{\loch
+\line \u8230\'85\u8230\'85}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Register A+N-1 value low bytes\line Register A+N-1 value high bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+CRC checks low bytes\line CRC checks high bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Table 4 Read Requests and Responses}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+4 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+b) Write a single hold register\line }{\loch\b\loch
+Request Normal Response Exception Response\line Address Address Address}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+Function Code(0x06}{\dbch\ab\dbch
+\u65289\'29 }{\loch\b\loch
+Function Code(0x06}{\dbch\ab\dbch
+\u65289\'29 }{\loch\b\loch
+Function Code(0x86)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SN[0] SN[0] SN[0]\line SN[1] SN[1] SN[1]\line SN[2] SN[2] SN[2]\line SN[3] SN[3] SN[3]\line SN[4] SN[4] SN[4]\line SN[5] SN[5] SN[5]\line SN[6] SN[6] SN[6]\line SN[7] SN[7] SN[7]\line SN[8] SN[8] SN[8]\line SN[9] SN[9] SN[9]}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Register address low byte Register address low byte Register address low byte\line Register address high bytes Register address high bytes Register address high bytes\line Register value low byte Register value low byte Exception code\line Register value high bytes Register value high bytes CRC checks low bytes\line CRC checks low bytes CRC checks low bytes CRC checks high bytes\line CRC checks high bytes CRC checks high bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Table 5 Writing Individual Registers and Responses}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+c) Write multiple hold registers\line }{\loch\b\loch
+Request Normal Response Exception Response\line Address Address Address}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+Function Code(0x10) Function Code(0x10) Function Code(0x90)\line }{\loch
+SN[0] SN[0] SN[0]\line SN[1] SN[1] SN[1]\line SN[2] SN[2] SN[2]\line SN[3] SN[3] SN[3]}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+5 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+SN[4] SN[4] SN[4]\line SN[5] SN[5] SN[5]\line SN[6] SN[6] SN[6]\line SN[7] SN[7] SN[7]\line SN[8] SN[8] SN[8]\line SN[9] SN[9] SN[9]}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Start address A low byte Start address A low byte Start address A low byte\line Start address A high byte Start address A high byte Start address A high byte}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Number of registers N low bytes Number of registers N low\line bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Exception code}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Number of registers N high bytes Number of registers N high\line bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+CRC checks low bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Number of bytes CRC checks low bytes CRC checks high bytes\line Register A value low bytes CRC checks high bytes\line Register A value high bytes\line Register A+1 value low bytes\line Register A+1 value high bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{
+\u8230\'85\u8230\'85}{\loch
+\line \u8230\'85\u8230\'85}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Register A+N-1 value low bytes\line Register A+N-1 value high bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+CRC checks low bytes\line CRC checks high bytes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Table 6 Writing Multiple Registers and Responses}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+6 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+2. Communication Configuration\line }{\loch
+1) Physical interface: RS-485\line 2) Communication mode: Universal asynchronous transceiver (UART)\line 3) Baud rate: 19200bps\line 4) One start bit, 8 data bits, no parity bits, one stop bit, total 10 bytes.\line 5) Minimum polling period: 1s\line 6) Register width: 2 bytes\line 7) 16-bit integer decoding order: The high and low byte order is reversed, for example 0x01 0x02,}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+it should be parsed as 0x0201=513\line 8) 32-bit integer decoding order: The high and low byte order is reversed, the byte sequence}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+within the word reversed, for example 0x01 0x02 0x03 0x04, should be parsed as\line 0x04030201=67305985}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+9) A maximum of 40 registers can be queried in a single request. The inverter software groups\line the registers in sets of 40, starting from 0-39 for the first group, 40-79 for the second group,\line 80-119 for the third group, and so on. When querying 40 registers, the starting address must\line be 0 (0-39), 40 (40-79), 80 (80-119), and so on. It is not allowed to query registers that span\line across different groups simultaneously. For example, if you need to query the values of\line registers 38-40, you must perform two separate queries because 38-39 are in the first group\line and 40 is in the second group.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+10) The maximum number of registers that can be queried in a single request for the new inverter\line is 127.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+7 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+3. Register Mapping Table\line 1) Input Register}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+It is used to store the operational data of the energy storage inverter, which can only be read and\line not written, and supports function codes 0x04.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Input Addr Item Unit Range Note}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0 }{\loch
+State 0-65535\line For more information,see the}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+definition of the operation mode of\line off-grid-connected energy storage all-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+in-one file\line }{\loch\b\loch
+1 }{\loch
+Vpv1 0.1V 0-65535 PV1 voltage, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable\line }{\loch\b\loch
+2 }{\loch
+Vpv2 0.1V 0-65535 PV2 voltage, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable\line }{\loch\b\loch
+3 }{\loch
+Vpv3 0.1V 0-65536 PV3 voltage, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable\line }{\loch\b\loch
+4 }{\loch
+Vbat 0.1V 0-65535 Battery voltage\line }{\loch\b\loch
+5}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SOC % 0-100 Battery capacity\line SOH % 0-100 Battery State of health}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+6 }{\loch
+Internal Fault 0-65535 For more information, see Internal\line Fault Code Definition file}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+7 }{\loch
+Ppv1 W 0-65535 PV1 power/ AC energy storage Ppv\line }{\loch\b\loch
+8 }{\loch
+Ppv2 W 0-65535 PV2 power, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+9 }{\loch
+Ppv3 W 0-65536\line PV3 power (total PV power, obtained\line by adding PV1, 2, 3), the AC energy\line storage system does not have this}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+variable\line }{\loch\b\loch
+10 }{\loch
+Pcharge W 0-65535 Charging power (power flowing into}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+the battery)\line }{\loch\b\loch
+11 }{\loch
+Pdischarge W 0-65535 Discharging power (power flowing}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+out of battery power)\line }{\loch\b\loch
+12 }{\loch
+VacR 0.1V 0-65535 R-phase utility grid voltage\line }{\loch\b\loch
+13 }{\loch
+VacS 0.1V 0-65535 S-phase utility grid voltage\line }{\loch\b\loch
+14 }{\loch
+VacT 0.1V 0-65535 T-phase utility grid voltage\line }{\loch\b\loch
+15 }{\loch
+Fac 0.01Hz 0-65535 Utility grid frequency\line }{\loch\b\loch
+16 }{\loch
+Pinv W 0-65535 }{\loch\b\loch
+On-gird inverter power}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+(For three phase: R phase)\line 17 }{\loch
+Prec W 0-65535 }{\loch\b\loch
+AC charging rectification power}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+(For three phase: R phase)\line 18 }{\loch
+IinvRMS 0.01A 0-65535 }{\loch\b\loch
+Inverter rms current output}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+(For three phase: R phase)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+19 }{\loch
+PF 0.001 0-2000\line }{\loch\b\loch
+Power factor x\u1108\'3f(0,1000]->x/1000\line x\u1108\'3f(1000,2000)->(1000-x)/1000\line (For three phase: R phase)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+20 }{\loch
+VepsR 0.1V 0-65535 }{\loch\b\loch
+R phase off-grid output voltage\line 21 }{\loch
+VepsS 0.1V 0-65535 }{\loch\b\loch
+S phase off-grid output voltage\line 22 }{\loch
+VepsT 0.1V 0-65535 }{\loch\b\loch
+T phase off-grid output voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+8 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+23 }{\loch
+Feps 0.01Hz 0-65535 Off-grid output frequency\line }{\loch\b\loch
+24 }{\loch
+Peps W 0-65535 }{\loch\b\loch
+Off-grid inverter power}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+(For three phase: R phase)\line 25 }{\loch
+Seps VA 0-65535 }{\loch\b\loch
+Off-grid apparent power}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+(For three phase: R phase)\line 26 }{\loch
+Ptogrid W 0-65535 }{\loch\b\loch
+User on-grid power (For three phase:}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+R phase)\line 27 }{\loch
+Ptouser W }{\loch\b\loch
+0-65535 Grid power capacity}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+(For three phase: R phase)\line 28 }{\loch
+Epv1_day 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV1 power generation today / AC\line Energy Storage Epv_day}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+29 }{\loch
+Epv2_day 0.1kWh 0-65535\line PV2 power generation today, the AC\line energy storage system does not have}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+this variable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+30 }{\loch
+Epv3_day 0.1kWh 0-65535\line PV3 power generation today (total\line PV=PV1+PV2+PV3), the AC energy\line storage system does not have this}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+variable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+31 }{\loch
+Einv_day 0.1kWh 0-65535 Today's on-grid inverter output\line energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+32 }{\loch
+Erec_day 0.1kWh 0-65535 Today's AC charging rectifier energy\line }{\loch\b\loch
+33 }{\loch
+Echg_day 0.1kWh 0-65535 Energy Charge today\line }{\loch\b\loch
+34 }{\loch
+Edischg_day 0.1kWh 0-65535 Energy Discharge today\line }{\loch\b\loch
+35 }{\loch
+Eeps_day 0.1kWh 0-65535 Today's off-grid output energy\line }{\loch\b\loch
+36 }{\loch
+Etogrid_day 0.1kWh 0-65535 Today's export to gird energy\line }{\loch\b\loch
+37 }{\loch
+Etouser_day 0.1kWh 0-65535 Electricity supplied to user from the}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+grid today\line }{\loch\b\loch
+38 }{\loch
+Vbus1 0.1V 0-65535 Voltage of Bus 1\line }{\loch\b\loch
+39 }{\loch
+Vbus2 0.1V 0-65535 Voltage of Bus 2\line }{\loch\b\loch
+40 }{\loch
+Epv1_all L 0.1kWh 0-65535 PV1 cumulative power generation/AC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+energy storage Epv_all Low byte\line }{\loch\b\loch
+41 }{\loch
+Epv1_all H 0.1kWh 0-65535 PV1 cumulative power generation/AC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+energy storage Epv_all high byte}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+42 }{\loch
+Epv2_all L 0.1kWh 0-65535\line PV2 cumulative power generation}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+low byte, AC energy storage does not\line have this variable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+43 }{\loch
+Epv2_all H 0.1kWh 0-65535\line PV2 cumulative power generation}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+high byte, AC energy storage does not\line have this variable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+44 }{\loch
+Epv3_all L 0.1kWh 0-65535\line PV3 cumulative power generation}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+low byte (total PV=PV1+PV2+PV3), AC\line energy storage does not have this}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+variable.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+45 }{\loch
+Epv3_all H 0.1kWh 0-65535\line PV3 cumulative power generation\line high byte (total PV=PV1+PV2+PV3),\line AC energy storage does not have this}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+variable\line }{\loch\b\loch
+46 }{\loch
+Einv_all L 0.1kWh 0-65535 Inverter output accumulated power}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+low byte\line Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+9 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+47 }{\loch
+Einv_all H 0.1kWh 0-65535 Inverter output accumulates power\line high byte}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+48 }{\loch
+Erec_all L 0.1kWh 0-65535 AC charging accumulates rectified\line power Low byte}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+49 }{\loch
+Erec_all H 0.1kWh 0-65535 AC charging accumulates rectified\line power high byte}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+50 }{\loch
+Echg_all L 0.1kWh 0-65535 Cumulative charge energy low byte\line }{\loch\b\loch
+51 }{\loch
+Echg_all H 0.1kWh 0-65535 Cumulative charge energy high byte\line }{\loch\b\loch
+52 }{\loch
+Edischg_all L 0.1kWh 0-65535 Cumulative discharge charge energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Low byte\line }{\loch\b\loch
+53 }{\loch
+Edischg_all H 0.1kWh 0-65535 Cumulative discharge charge energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+High byte\line }{\loch\b\loch
+54 }{\loch
+Eeps_all L 0.1kWh 0-65535 Cumulative inverter off-grid output}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+energy Low byte\line }{\loch\b\loch
+55 }{\loch
+Eeps_all H 0.1kWh 0-65535 Cumulative inverter off-grid output}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+energy High byte\line }{\loch\b\loch
+56 }{\loch
+Etogrid_all L 0.1kWh 0-65535 Accumulate export energy Low byte\line }{\loch\b\loch
+57 }{\loch
+Etogrid_all H 0.1kWh 0-65535 Accumulate export energy High byte\line }{\loch\b\loch
+58 }{\loch
+Etouser_all L 0.1kWh 0-65535 Cumulative import energy Low byte\line }{\loch\b\loch
+59 }{\loch
+Etouser_all H 0.1kWh 0-65535 Cumulative import energy high byte\line }{\loch\b\loch
+60 }{\loch
+FaultCode L 0-65535 For more information, see Fault code}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+definition file\line }{\loch\b\loch
+61 }{\loch
+FaultCode H 0-65535 For more information, see Fault code}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+definition file\line }{\loch\b\loch
+62 }{\loch
+WarningCode L 0-65535 For more information, see Alarm}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+code definition file\line }{\loch\b\loch
+63 }{\loch
+WarningCode H 0-65535 For more information, see Alarm}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+code definition file\line }{\loch\b\loch
+64 }{\loch
+Tinner celsius 0-65535 Internal temperature\line }{\loch\b\loch
+65 }{\loch
+Tradiator1 Celsius 0-65535 Radiator temperature 1\line }{\loch\b\loch
+66 }{\loch
+Tradiator2 celsius 0-65535 Radiator temperature 2\line }{\loch\b\loch
+67 }{\loch
+Tbat celsius 0-65535 Battery temperature\line }{\loch\b\loch
+69 }{\loch
+RunningTime L second Runtime duration}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+70 }{\loch
+RunningTime H second Runtime duration}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+71}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+AutoTestStart Bit0-3 0 - not started ;\line 1 - started}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+UbAutoTestStatus Bit4-7\line 0-waiting\line 1-testing\line 2-test fail\line 3-V test OK\line 4-F test OK\line 5- test pass}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+UbAutoTestStep Bit8-11\line 1-V1L test\line 2-V1H}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+3-F1L test\line 4-F1H test}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+10 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+5-V2L test\line 6-V2H test\line 7-F2L test\line 8-F2H test}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+72 }{\loch
+wAutoTestLimit 0.1V/0.\line 01Hz}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+When ubAuto Test Step=1,2,5,6, is\line the voltage limit;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+When ubAutoTest Step=3,4,7,8, it is\line the frequency limit}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+73 }{\loch
+uwAutoTestDefault\line Time ms}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+74 }{\loch
+uwAutoTestTripValue 0.1V/0.\line 01Hz}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+When ubAuto Test Step=1,2,5,6, is\line the voltage limit;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+When ubAutoTestStep=3,4,7,8, it is\line the frequency limit}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+75 }{\loch
+uwAutoTestTripTime ms}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+77\line }{\loch
+ACInputType Bit0 0 or 1 0-Grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1-Generator for 12KHybrid\line ACCoupleInverterFlow Bit1 0 or 1 0-no flow}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1-show flow\line ACCoupleEn On Bit2 0 or 1 0-Disable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1-Enable\line SmartLoadFlow Bit3 0 or 1 0-no flow 1-show flow}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+When Bit4 is 1 and smartload power>0,\line set it to 1; Used to monitor the power\line arrow displayed on the homepage;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SmartLoadEnOn Bit4 0 or 1 0-Disable 1-Enable\line Set to 1 when the user enables\line SmartLoad and the machine has\line reached the activation condition;\line Display power;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+EpsLoadPowerShow Bit5 0 or 1\line 0-no power display 1-power display\line Temporarily set to 1 during initialization\line for compatibility with new and old\line software; Monitor whether the EPS side\line load power is displayed based on this flag}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+GridLoadPowerShow Bit6 0 or 1\line 0-no power display 1-power display\line Temporarily set to 1 during initialization\line for compatibility with new and old\line software; Monitor whether the Grid side\line load power is displayed based on this flag}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PloadPowerShow Bit7 0 or 1\line 0-no power display 1-power display\line Temporarily set to 1 during initialization\line for compatibility with new and old\line software;Monitor whether to display the\line total load power based on the flag\line position}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+80 }{\loch
+BatTypeAndBrand For more information, see the model\line definition file}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+BatComType 0 or 1 0-CAN\line 1-485}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+81 }{\loch
+MaxChgCurr 0.01A The maximum charging current of\line BMS limits}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+82 }{\loch
+MaxDischgCurr 0.01A The maximum discharging current of\line BMS limits}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+83 }{\loch
+ChargeVoltRef 0.1V Recommends charging voltage by\line BMS}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+84 }{\loch
+DischgCutVolt 0.1V Recommends a discharging cut-off\line voltage by BMS}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+85 }{\loch
+BatStatus0_BMS Status information of BMS\line }{\loch\b\loch
+86 }{\loch
+BatStatus1_BMS Status information of BMS}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+11 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+87 }{\loch
+BatStatus2_BMS Status information of BMS\line }{\loch\b\loch
+88 }{\loch
+BatStatus3_BMS Status information of BMS\line }{\loch\b\loch
+89 }{\loch
+BatStatus4_BMS Status information of BMS\line }{\loch\b\loch
+90 }{\loch
+BatStatus5_BMS Status information of BMS\line }{\loch\b\loch
+91 }{\loch
+BatStatus6_BMS Status information of BMS\line }{\loch\b\loch
+92 }{\loch
+BatStatus7_BMS Status information of BMS\line }{\loch\b\loch
+93 }{\loch
+BatStatus8_BMS Status information of BMS\line }{\loch\b\loch
+94 }{\loch
+BatStatus9_BMS Status information of BMS\line }{\loch\b\loch
+95 }{\loch
+BatStatus_INV The inverter aggregates lithium}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+battery status information\line }{\loch\b\loch
+96 }{\loch
+BatParallelNum Number of batteries in parallel\line }{\loch\b\loch
+97 }{\loch
+BatCapacity Ah Battery capacity\line }{\loch\b\loch
+98 }{\loch
+BatCurrent_BMS 0.01A Battery current , with signed number\line }{\loch\b\loch
+99 }{\loch
+FaultCode_BMS}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+100 }{\loch
+WarningCode_BMS\line }{\loch\b\loch
+101 }{\loch
+MaxCellVolt_BMS 0.001V Maximum voltage of cell\line }{\loch\b\loch
+102 }{\loch
+MinCellVolt_BMS 0.001V Minimum voltage of cell\line }{\loch\b\loch
+103 }{\loch
+MaxCellTemp_BMS 0.1\u8451\'3f Maximum temperature of cell, with}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+signed number\line }{\loch\b\loch
+104 }{\loch
+MinCellTemp_BMS 0.1\u8451\'3f Minimum temperature of cell, with}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+signed number}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+105}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+BMSFWUpdateState Bit0-2 1-3}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1-Upgrade in process\line 2-Upgrade successful\line 3- Upgrade failed}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+RSVD Bit3 ... ...}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+GenDryContactState Bit4 0 - 1\line 0 - Turn off 1 - Turn on\line Only For 12k}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+RSVD Bit5-15 ... ...\line }{\loch\b\loch
+106 }{\loch
+CycleCnt_BMS}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Number of charging/discharging\line cycles}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+107 }{\loch
+BatVoltSample_INV 0.1V Tnverter samples the battery voltage\line }{\loch\b\loch
+108 }{\loch
+T1 0.1\u8451\'3f BT temperature for 12k}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+109 }{\loch
+T2 0.1\u8451\'3f Reserved}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+110 }{\loch
+T3 0.1\u8451\'3f Reserved\line }{\loch\b\loch
+111 }{\loch
+T4 0.1\u8451\'3f Reserved\line }{\loch\b\loch
+112 }{\loch
+T5 0.1\u8451\'3f Reserved}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+113}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+MasterOrSlave Bit0~1 1,2\line Master or Slave\line 1: Master\line 2: Slave}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SingleOrThreePhase\line Bit2~3 1-3}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Parallel phase\line 1:R\line 2:S\line 3:T}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Phases sequence Bit4~5 0-1 0- Positive order\line 1- Negative order}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Rsvd Bit6~7 Reserved\line ParallelNum Bit8~16 1~255 Number of inverters in parallel}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+114 }{\loch
+OnGridloadPower W Load power of the 12k inverter when\line it is not off-grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+115 }{\loch
+SN[0]-Year '0'-'9' 'A'-\line 'Z' The serial number is a ten-digit ASCII}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+code\line For example: The serial number is}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+AB12345678\line SN[0]=0x41(A)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+:\line :}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SN[1]-week '0'-'9' 'A'-\line 'Z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+116 }{\loch
+SN[2]-week '0'-'9' 'A'-\line 'Z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SN[3]-factory '0'-'9' 'A'-\line 'Z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+12 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+:\line :}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SN[9]=0x38(8)\line }{\loch\b\loch
+117 }{\loch
+SN[4]-product code '0'-'9' 'A'-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+'Z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SN[5] -product code '0'-'9' 'A'-\line 'Z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+118 }{\loch
+SN[6] -serial number '0'-'9' 'A'-\line 'Z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SN[7]-serial number '0'-'9' 'A'-\line 'Z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+119 }{\loch
+SN[8] -serial number '0'-'9' 'A'-\line 'Z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SN[9] -serial number '0'-'9' 'A'-\line 'Z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+120 }{\loch
+VBusP 0.1V Half BUS voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+121 }{\loch
+GenVolt 0.1V\line Generator voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Voltage of generator for three phase:\line R phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+122 }{\loch
+GenFreq 0.01Hz Generator frequency\line }{\loch\b\loch
+123 }{\loch
+GenPower W Voltage of generator for three phase:}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+R phase\line }{\loch\b\loch
+124 }{\loch
+Egen_day 0.1kWh Energy of generator today\line }{\loch\b\loch
+125 }{\loch
+Egen_all L 0.1kWh Low byte of total generator energy\line }{\loch\b\loch
+126 }{\loch
+Egen_all H 0.1kWh High byte of total generator energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+127 }{\loch
+EPSVoltL1N 0.1V\line Voltage of EPS L1N}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Voltage of generator for three phase:\line S phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+128 }{\loch
+EPSVoltL2N 0.1V\line Voltage of EPS L2N}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Voltage of generator for three phase:\line T phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+129 }{\loch
+Peps_L1N W\line Active power of EPS L1N}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Off-grid active power of three phase:\line S phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+130 }{\loch
+Peps_L2N W\line Active power of EPS L2N}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Off-grid active power of three phase:\line T phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+131 }{\loch
+Seps_L1N VA\line Apparent power of EPS L1N}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Off-grid apparent power of three\line phase: S phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+132 }{\loch
+Seps_L2N VA\line Apparent power of EPS L2N}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Off-grid apparent power of three\line phase: T phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+133 }{\loch
+EepsL1N_day 0.1kWh\line Daily energy of EPSL1N}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Off-grid daily energy of three phase: S\line phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+134 }{\loch
+EepsL2N_day 0.1kWh\line Daily energy of EPSL2N}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Off-grid daily energy of three phase: T\line phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+135 }{\loch
+EepsL1N_all L 0.1kWh\line Low byte of total EPSL1N energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Total off-grid power of three phase: S\line phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+136 }{\loch
+EepsL1N_all H 0.1kWh\line High byte of total EPSL1N energy\line Total off-grid power of three}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+cameras: S phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+137 }{\loch
+EepsL2N_all L 0.1kWh\line Low word of total EPSL2N energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Total off-grid power of three phase: T\line phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+138 }{\loch
+EepsL2N_all H 0.1kWh\line High byte of total EPSL2N energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Total off-grid power of three byte: T\line phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+139 }{\loch
+Qinv Var Reactive power\line }{\loch\b\loch
+140 }{\loch
+AFCI_CurrCH1 mA AFCI current\line }{\loch\b\loch
+141 }{\loch
+AFCI_CurrCH2 mA AFCI current\line }{\loch\b\loch
+142 }{\loch
+AFCI_CurrCH3 mA AFCI current\line }{\loch\b\loch
+143 }{\loch
+AFCI_CurrCH4 mA AFCI current}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+144}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+AFCIFlag.ArcAlarmCH1 Bit0 Arc status of CH1 0-Normal 1-Alarm\line AFCIFlag.ArcAlarmCH2 Bit1 Arc status of CH2 0-Normal 1-Alarm\line AFCIFlag.ArcAlarmCH3 Bit2 Arc status of CH3 0-Normal 1-Alarm\line AFCIFlag.ArcAlarmCH4 Bit3 Arc status of CH4 0-Normal 1-Alarm\line AFCIFlag.SelfTestResult}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+CH1 Bit4 Test result of CH1 0-Normal 1-fail\line AFCIFlag.SelfTestResult}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+CH2 Bit5 Test result of CH2 0-Normal 1-fail\line AFCIFlag.SelfTestResult}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+CH3 Bit6 Test result of CH3 0-Normal 1-fail\line AFCIFlag.SelfTestResult}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+CH4 Bit7 Test result of CH4 0-Normal 1-fail\line AFCI_ArcAlarm.rsvd Bit8-15}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+145 }{\loch
+AFCI_ArcCH1 Real time arc of CH1\line }{\loch\b\loch
+146 }{\loch
+AFCI_ArcCH2 Real time arc of CH2\line }{\loch\b\loch
+147 }{\loch
+AFCI_ArcCH3 Real time arc of CH3\line }{\loch\b\loch
+148 }{\loch
+AFCI_ArcCH4 Real time arc of CH4\line }{\loch\b\loch
+149 }{\loch
+AFCI_MaxArcCH1 Max arc of CH1\line }{\loch\b\loch
+150 }{\loch
+AFCI_MaxArcCH2 Max arc of CH2\line }{\loch\b\loch
+151 }{\loch
+AFCI_MaxArcCH3 Max arc of CH3\line }{\loch\b\loch
+152 }{\loch
+AFCI_MaxArcCH4 Max arc of CH4\line }{\loch\b\loch
+153 }{\loch
+ACCouplePower W AC Coupled inverter power\line }{\loch\b\loch
+154 }{\loch
+AutoTestTripValue[0] 0.1V/0.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+01Hz\line \u8230\'85\u8230\'85}{\loch\b\loch
+\line 161 }{\loch
+AutoTestTripValue[7] 0.1V/0.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+01Hz\line }{\loch\b\loch
+162 }{\loch
+AutoTestTripTime [0] ms\line \u8230\'85\u8230\'85}{\loch\b\loch
+\line 169 }{\loch
+AutoTestTripTime [7] ms\line }{\loch\b\loch
+170 }{\loch
+Pload W Load consumption when working in}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+on-grid mode\line }{\loch\b\loch
+171 }{\loch
+Eload_day 0.1kWh Load energy for today\line }{\loch\b\loch
+172 }{\loch
+Eload_allL 0.1kWh Load energy for total High byte\line }{\loch\b\loch
+173 }{\loch
+Eload_allH 0.1kWh Load energy for total Low byte}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+174 }{\loch
+SwitchState.SafetySw Bit0~4 0~0x1F The status of the 5-digit safety DIP\line switch}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SwitchState.rsvd Bit5-7 0 Reserved\line SwitchState.EpsSwOn Bit8 Status of EPS switch\line SwitchState.DrySwOn Bit9 Generator dry contact status\line SwitchState.GenQuick\line StartUsed}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit10 generator quick start flag displayed}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SwitchState.rsvd Bit11-14 Reserved}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SwitchState.SwRegUsed\line Bit15 Determine whether the switch register is}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+being used\line }{\loch\b\loch
+175 }{\loch
+EPS overload ctrl time s Connect in xx S after triggering the}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+EPS overload issue}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+176}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ExceptionReason1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit0~3 3phase:PVGridOn Exit Reason\line Bit4~7 3phase:PVChgGridOn Exit Reason\line Bit8~11 3phase:BatGridOn Exit Reason\line Bit12~1\line 5 3phase:PVBatGridOn Exit Reason}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+177 }{\loch
+ExceptionReason2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit0~3 3phase:PVCharge Exit Reason\line Bit4~7 3phase:ACCharge Exit Reason\line Bit8~11 3phase:PVACCharge Exit Reason\line Bit12~1\line 5 3phase:EPS Exit Reason}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+178\line }{\loch
+ChgDischgDisableReaso\line n}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit0~7 3phase:Charge Exit Reason\line Bit8~15 3phase:Discharge Exit Reason}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{
+\u8230\'85\u8230\'85 \u8230\'85\u8230\'85 \u8230\'85\u8230\'85 \u8230\'85\u8230\'85 \u8230\'85\u8230\'85}{\loch\b\loch
+\line }{\loch
+180 Pinv_S W 0-65535 On grid inverter power of three}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+phase: S phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+181 Pinv_T W 0-65535 On grid inverter power of three\line phase: T phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+182 Prec_S W 0-65535 Charging rectification power of three\line phase: S phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+183 Prec_T W 0-65535 Charging rectification power of three\line phase: T phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+184 Ptogrid_S W 0-65535 User on-grid power of three phase: S\line phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+185 Ptogrid_T W 0-65535 User on-grid power of three phase: T\line phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+186 Ptouser_S W 0-65535 Grid supply power of three phase: S\line phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+187 Ptouser_T W 0-65535\line Grid supply power of three phase:T}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+188 GenPower_S W 0-65535\line Power of generator for three phase: S}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+189 GenPower_T W 0-65535 Power of generator for three phase: T\line phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+190 IinvRMS_S 0.01 0-65535 Effective value of three phase\line inverter current: S phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+191 IinvRMS_T 0.01 0-65535 Effective value of three phase\line inverter current: T phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+192 PF_S 0.001 0-2000\line Power factor of phase S in three-\line phase inverter x\u1108\'3f(0,1000]->x/1000\line x\u1108\'3f(1000,2000)->(1000-x)/1000}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+193 GridVoltL1N 0.1V Voltage of Grid L1N}{\dbch
+\u65288\'28}{\loch
+for US model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+194 GridVoltL2N 0.1V Voltage of Grid L2N}{\dbch
+\u65288\'28}{\loch
+for US model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+195 GenVoltL1N 0.1V Voltage of Gen L1N}{\dbch
+\u65288\'28}{\loch
+for US model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+196 GenVoltL2N 0.1V Voltage of Gen L2N}{\dbch
+\u65288\'28}{\loch
+for US model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+197 PinvL1N W 0-65535 Inverting power of phase L1N }{\dbch
+\u65288\'28}{\loch
+for US\line model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+198 PinvL2N W 0-65535 Inverting power of phase L2N }{\dbch
+\u65288\'28}{\loch
+for US\line model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+199 PrecL1N W 0-65535 Rectifying power of phase L1N}{\dbch
+\u65288\'28}{\loch
+for US\line model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+200 PrecL2N W 0-65535 Rectifying power of phase L2N }{\dbch
+\u65288\'28}{\loch
+for US\line model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+201 Ptogrid_L1N W 0-65535 Grid export power of phase L1N (for US\line model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+202 Ptogrid_L2N W 0-65535 Grid export power of phase L2N (for US\line model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+203 Ptouser_L1N W 0-65535 Grid import power of phase L1N (for US\line model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+204 Ptouser_L2N W 0-65535 Grid import power of phase L2N (for US}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+model}{\dbch
+\u65289\'29}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+205 PF_T 0.001 0-2000\line Power factor of phase T in three-\line phase inverter x\u1108\'3f(0,1000]->x/1000\line x\u1108\'3f(1000,2000)->(1000-x)/1000}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+206 ACCouplePower_S W AC Couple inverter power_S\line 207 ACCouplePower_T W AC Couple inverter power_T}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+208\line OnGridloadPowerS W Load power of S-phase the Trip6-20k}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+inverter when it is not off-grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+209\line OnGridloadPowerT W}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Load power of T-phase the Trip6-20k\line inverter when it is not off-grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+210 Remaining seconds S\line Remaining seconds of one click charging}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+process\line ...\line 214 uwNTCForINDC celsius 0-65535 Internal temperature\line 215 uwNTCForDCDCL Celsius 0-65535 Radiator temperature 1\line 216 uwNTCForDCDCH celsius 0-65535 Radiator temperature 2\line 217}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Vpv4\line 0.1V 0-65535 PV4 voltage, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable\line 218}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Vpv5\line 0.1V 0-65535 PV5 voltage, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable\line 219}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Vpv6\line 0.1V 0-65536 PV6 voltage, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable\line 220}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Ppv4\line W 0-65535 PV4 power, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable\line 221}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Ppv5\line W 0-65535 PV5 power, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable\line 222}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Ppv6\line W 0-65535 PV6 power, the AC energy storage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system does not have this variable\line 223}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Epv4_day\line 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV4 power generation today, the AC\line energy storage system does not have}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+this variable\line 224}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Epv4_all L\line 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV4 cumulative power generation\line low byte, AC energy storage does not}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+have this variable\line 225}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Epv4_all H\line 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV4 cumulative power generation\line high byte, AC energy storage does not}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+have this variable\line 226}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Epv5_day\line 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV5 power generation today, the AC\line energy storage system does not have}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+this variable\line 227}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Epv5_all L\line 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV5 cumulative power generation\line low byte, AC energy storage does not}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+have this variable\line 228}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Epv5_all H\line 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV5 cumulative power generation\line high byte, AC energy storage does not}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+have this variable\line 229}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Epv6_day\line 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV6 power generation today, the AC\line energy storage system does not have}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+this variable\line 230}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Epv6_all L\line 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV6 cumulative power generation\line low byte, AC energy storage does not}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+have this variable\line 231}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Epv6_all H\line 0.1kWh 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV6 cumulative power generation\line high byte, AC energy storage does not}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+have this variable\line 232 Smart Load Power W Smart Load output power}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Table 7 Input Register Mapping Table (Signed numbers indicated with a green background)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+2) Hold Register\line }{\loch
+It is used to store the operational data of the energy storage inverter, which can only be read and\line written, and supports function codes 0x03, 0x06, 0x10.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Hold\line Addr Item Unit Range and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+default Note}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+7\line }{\loch
+FWCode0 'A'-'Z' 'a'-'z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+For more information of the\line model code, see Software\line Version Definition file}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FWCode1 'A'-'Z' 'a'-'z'\line For more information of the\line code name for the derived}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+model, see the software version\line definition file}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+8\line }{\loch
+FWCode2 'A'-'Z' 'a'-'z'}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+For more information of the\line ODM code,see Software}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Version Definition}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FWCode3 'A'-'Z' 'a'-'z'\line For more information of the\line region code, see Software\line Version Definition file}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+9\line }{\loch
+Slave Ver 0-255}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+For more information of the\line software version number for\line redundant CPU, see Software}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+version definition file}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Com Ver 0-255\line For Communication CPU}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+software version number, see\line software version definition file}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+10 }{\loch
+Cntl Ver 0-255\line For Control CPU software}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+version number, see software\line version definition file}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FWVer 0-255 For external software version\line number, see Software Version}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+17 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{
+\u8230\'85\u8230\'85}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+11}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+...\line Bit0 0/1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ResetSetting.AlltoDefault Bit1 0/1 System settings restored to\line default values}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+... Bit2 0/1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+... Bit3 0/1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+... Bit4 0/1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+... Bit5 0/1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+... Bit6 0/1\line ResetSetting. InvReboot Bit7 0/1 0-null 1- restart inverter}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ResetSetting.rsvd Bit8 0/1 Retain\line ResetSetting.rsvd Bit9 0/1 Retain\line ResetSetting.rsvd Bit10 0/1 Retain\line ResetSetting.rsvd Bit11 0/1 Retain\line ResetSetting.rsvd Bit12 0/1 Retain\line ResetSetting.rsvd Bit13 0/1 Retain\line ResetSetting.rsvd Bit14 0/1 Retain\line ResetSetting.rsvd Bit15 0/1 Retain}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+12 }{\loch
+Time_Year 17-255 inverter time-year\line Time_Month 1-12 inverter time-month}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+13 }{\loch
+Time_Date 1-31 inverter time-day\line Time_Hour 0-23 inverter time-hour}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+14 }{\loch
+Time_Minute 0-59 inverter time-minute\line Time_Second 0-59 inverter time-second}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+15 }{\loch
+Com Addr 0-150 MODBUS address\line }{\loch\b\loch
+16 }{\loch
+Language 0-1 0-English 1-German}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Language 0-English 1-German\line }{\loch\b\loch
+19 }{\loch
+DTC:Device type 0-31}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0}{\dbch
+\u65306\'3a }{\loch
+Default\line 3: XOLTA (for high-speed\line communication interval )}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+20 }{\loch
+PVInputModel\line 0-4\line For}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+12KHybrid:0-7}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0: No PV plug in\line 1: PV1 plug in\line 2: PV2 plug in}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+3: two PVs in parallel\line 4: two separate PVs, AC energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+storage does not have this\line variable.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+For 12KHybrid}{\dbch
+\u65306\'3a}{\loch
+\line 0-No PV\line 1-PV1 in\line 2-PV2 in\line 3-PV3 in}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+4-PV1&2 in\line 5-PV1&3 in\line 6-PV2&3 in}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+7-PV1&2&3 in\line For TriP 6-20k :}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-All MPPTs with individual PV\line strings}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1- PV1&2 in parallel\line connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2- PV1 & 3 in parallel\line connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+3 - PV2 and PV3 in parallel\line connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+18 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+4 - PV1&2&3 in parallel\line connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+21\line }{\loch
+FuncEn.EPSEn 0 0/1 Off-grid mode enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FuncEn.OVFLoadDerate\line En 1 0/1 Overfrequency load reduction}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+enable\line FuncEn.DRMSEn 2 0/1 DRMS enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+FuncEn.LVRTEn 3 0/1 Low voltage ride-through\line enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FuncEn.AntiIslandEn 4 0/1 Anti-islanding enablement\line FuncEn.NeutralDetectE}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+n\line 5 0/1 Ground neutral detection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+enable\line FuncEn.GridOnPowerSS}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+En 6 0/1 On-grid power soft start enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FuncEn.ACChargeEn 7 0/1 AC charging enable\line FuncEn.SWSeamlesslyE}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+n 8 0/1 seamless off-grid mode\line switching enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FuncEn.SetToStandby 9 0/1 0: Standby 1: Power on\line FuncEn.ForcedDischgEn 10 0/1 Forced discharge enable\line FuncEn.ForcedChgEn 11 0/1 Force charge enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FuncEn.ISOEn 12 0/1\line ISO enable, and AC energy\line storage does not have this}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+variable\line FuncEn.GFCIEn 13 0/1 GFCI enable\line FuncEn.DCIEn 14 0/1 DCI enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FuncEn.FeedInGridEn 15 0/1 0-disable 1-enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+22 }{\loch
+StartPVVolt 0.1V 900-5000\line PV start-up voltage, AC energy\line storage does not have this}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+variable\line }{\loch\b\loch
+23 }{\loch
+ConnectTime s 30-600 Waiting time of on-grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+24 }{\loch
+ReconnectTime s 0-900 Waiting time of Reconnect on-\line gird}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+25 }{\loch
+GridVoltConnLow 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+The lower limit of the allowed\line on-grid voltage.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+26 }{\loch
+GridVoltConnHigh 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+The upper limit of the the\line allowed on-grid voltage.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+27 }{\loch
+GridFreqConnLow 0.01Hz\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+The lower limit of the allowable\line on-grid frequency}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+28 }{\loch
+GridFreqConnHigh 0.01Hz\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+The upper limit of the the\line allowed on-grid frequency.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+29 }{\loch
+GridVoltLimit1Low 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 1\line undervoltage protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+19 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+30 }{\loch
+GridVoltLimit1High 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 1 overvoltage\line protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+31\line }{\loch
+GridVoltLimit1LowTime Main period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+According to\line specific}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+regulatory\line requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 1\line undervoltage protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+32 }{\loch
+GridVoltLimit1HighTime Main period\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 1 overvoltage\line protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+33 }{\loch
+GridVoltLimit2Low 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 2\line undervoltage protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+34 }{\loch
+GridVoltLimit2High 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 2 overvoltage\line protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+35 }{\loch
+GridVoltLimit2LowTime Main period\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 2\line undervoltage protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+36\line }{\loch
+GridVoltLimit2HighTime Main period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+According to\line specific}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+regulatory\line requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 2 overvoltage\line protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+37 }{\loch
+GridVoltLimit3Low 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 3\line undervoltage protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+38 }{\loch
+GridVoltLimit3High 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 3 overvoltage\line protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+39 }{\loch
+GridVoltLimit3LowTime Main period\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 3\line undervoltage protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+40\line }{\loch
+GridVoltLimit3HighTime Main period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+According to\line specific}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+regulatory\line requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage level 3 overvoltage\line protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+41 }{\loch
+GridVoltMovAvgHigh 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid voltage sliding average\line overvoltage protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+20 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+42 }{\loch
+GridFreqLimit1Low 0.01Hz\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 1\line underfrequency protection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+43 }{\loch
+GridFreqLimit1High 0.01Hz\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 1\line overfrequency protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+44 }{\loch
+GridFreqLimit1LowTime Main period\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 1\line underfrequency protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+45 }{\loch
+GridFreqLimit1HighTime Main period\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 1\line overfrequency protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+46 }{\loch
+GridFreqLimit2Low 0.01Hz\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 2\line underfrequency protection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+47 }{\loch
+GridFreqLimit2High 0.01Hz\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Power grid frequency level 2\line overfrequency protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+48 }{\loch
+GridFreqLimit2LowTime Main period\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 2\line underfrequency protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+49 }{\loch
+GridFreqLimit2HighTime Main period\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 2\line overfrequency protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+50 }{\loch
+GridFreqLimit3Low 0.01Hz\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 3\line underfrequency protection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+51 }{\loch
+GridFreqLimit3High 0.01Hz\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 3\line overfrequency protection point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+52 }{\loch
+GridFreqLimit3LowTime Main period\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 3\line underfrequency protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+53 }{\loch
+GridFreqLimit3HighTime Main period\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Grid frequency level 3\line overfrequency protection time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+21 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+54 }{\loch
+MaxQPercentForQV %\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+The maximum percentage of\line reactive power for the Q(V)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+curve}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+55 }{\loch
+V2L 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Q(V) curve undervoltage 2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+56 }{\loch
+V1L 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Q(V) curve undervoltage 1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+57 }{\loch
+V1H 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Q(V) curve overvoltage 1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+58 }{\loch
+V2H 0.1V\line According to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+specific\line regulatory}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+requirements}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Q(V) curve overvoltage 2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+59 }{\loch
+ReactivePowerCMDTyp\line e 0-7}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Reactive power command type\line 0 - unit power factor}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1 - fixed PF\line 2 - default PF curve (American}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+machine: Q(P))\line 3 - custom PF curve}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+4 - capacitive reactive power\line percentage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+5- inductive reactive power\line percentage\line 6-QV curve}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+7-QV_Dynamic\line }{\loch\b\loch
+60 }{\loch
+ActivePowerPercentCM}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+D % 0-100 Active power percentage set\line value}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+61 }{\loch
+ReactivePowerPercentC\line MD % 0-60 Reactive power percentage set}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+value\line }{\loch\b\loch
+62 }{\loch
+PFCMD 0.001 750-1000, 1750-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2000\line PF set value, 750-1000(under),}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1750-2000(over)\line }{\loch\b\loch
+63 }{\loch
+PowerSoftStartSlope \u8240\'89/min 1-4000 Loading rate, the percentage of}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+power increase per minute.\line }{\loch\b\loch
+64 }{\loch
+ChargePowerPercentC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+MD % 0-100 Charging power percentage\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+65 }{\loch
+DischgPowerPercentCM\line D % 0-100 Discharging power percentage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line }{\loch\b\loch
+66 }{\loch
+ACChgPowerCMD % 0-100 AC charge percentage setting\line }{\loch\b\loch
+67 }{\loch
+ACChgSOCLimit % 0-100 SOC limit setting for AC charging}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+68 }{\loch
+ACChgStartHour hour 0-23 AC charging start time - hour\line setting.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACChgStartMinute min 0-59 AC charging start time_minute\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+22 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+69 }{\loch
+ACChgEndHour hour 0-23 AC charging end time_hour\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACChgEndMinute min 0-59 AC charging end time_minute\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+70 }{\loch
+ACChgStartHour1 hour 0-23 AC charging start time_hour\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACChgStartMinute1 min 0-59\line AC charging start}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+time_minutesetting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+71 }{\loch
+ACChgEndHour1 hour 0-23 AC charging end time_hour\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACChgEndMinute1 min 0-59 AC charging end time_minute\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+72 }{\loch
+ACChgStartHour2 hour 0-23\line AC charging start time_hour}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACChgStartMinute2 min 0-59 AC charging start time_minute\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+73 }{\loch
+ACChgEndHour2 hour 0-23 AC charging end time_hour\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACChgEndMinute2 min 0-59 AC charging end time_minute\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+74 }{\loch
+ChgFirstPowerCMD % 0-100 Charging priority percentage\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+75 }{\loch
+ChgFirstSOCLimit % Charging priority SOC limit\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+76\line }{\loch
+ChgFirstStartHour hour 0-23 Charging priority start}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+time_hour setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ChgFirstStartMinute min 0-59 Charge priority start time_min\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+77 }{\loch
+ChgFirstEndHour hour 0-23 Charging priority end time_hour\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ChgFirstEndMinute min 0-59 Charging priority end\line time_minute setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+78 }{\loch
+ChgFirstStartHour1 hour 0-23 Charging priority start\line time_hour setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ChgFirstStartMinute1 min 0-59\line Charging priority start time_min}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+79 }{\loch
+ChgFirstEndHour1 hour 0-23 Charging priority end time_hour\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ChgFirstEndMinute1 min 0-59 Charging priority end\line time_minute setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+80 }{\loch
+ChgFirstStartHour2 hour 0-23 Charging priority start\line time_hour setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ChgFirstStartMinute2 min 0-59 Charging priority start\line time_minute setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+81 }{\loch
+ChgFirstEndHour2 hour 0-23 Charging priority end time_hour\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ChgFirstEndMinute2 min 0-59 Charging priority end\line Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+23 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+time_minut setting\line }{\loch\b\loch
+82 }{\loch
+ForcedDischgPowerCM}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+D % 0-100\line Forced discharge percentage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+83 }{\loch
+ForcedDischgSOCLimit % 0-100 Forced discharge SOC limit\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+84 }{\loch
+ForcedDischgStartHour hour 0-23 Forced discharge start\line time_hour setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ForcedDischgStartMinut\line e min 0-59}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Forced discharge start\line time_minute setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+85 }{\loch
+ForcedDischgEndHour hour 0-23 Forced discharge end\line time_hour setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ForcedDischgEndMinute min 0-59\line Forced discharge end\line time_minute setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+86 }{\loch
+ForcedDischgStartHour1 hour 0-23 Forced discharge start\line time_hour setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ForcedDischgStartMinut\line e1 min 0-59}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Forced discharge start\line time_minute setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+87\line }{\loch
+ForcedDischgEndHour1 hour 0-23}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Forced discharge end\line time_hour setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ForcedDischgEndMinute\line 1 min 0-59}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Forced discharge end\line time_minute setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+88\line }{\loch
+ForcedDischgStartHour2 hour 0-23}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Forced discharge start\line time_hour setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ForcedDischgStartMinut\line e2 min 0-59}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Forced discharge start\line time_minute setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+89\line }{\loch
+ForcedDischgEndHour2 hour 0-23}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Forced discharge end\line time_hour setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ForcedDischgEndMinute\line 2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+min 0-59\line Forced discharge end\line time_minute setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+90 }{\loch
+EPSVoltageSet 1V\line 230,240,\line 277,208\line ,220}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Off-grid output voltage level\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+91 }{\loch
+EPSFreqSet 1Hz 50,60 Off-grid output frequency\line system settings}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+92 }{\loch
+LockInGridVForPFCurve 0.1V 2300-3000 cosphi(P)lock in voltage\line }{\loch\b\loch
+93 }{\loch
+LockOutGridVForPFCurv}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+e\line 0.1V 1500-3000 cosphi(P)lock out voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+94 }{\loch
+LockInPowerForQVCurv\line e % 0-100 Q(V) lock in power}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+95 }{\loch
+LockOutPowerForQVCur\line ve % 0-100 Q(V) lock out power}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+24 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+96 }{\loch
+DelayTimeForQVCurve Main period 0-2000 Q(V) delay\line }{\loch\b\loch
+97 }{\loch
+DelayTimeForOverFDer}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ate Main period 0-1000 Overfrequency load reduction\line delay}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+99 }{\loch
+ChargeVoltRef 0.1V 500-590 Lead-acid battery charging\line specified voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+100 }{\loch
+CutVoltForDischg 0.1V 400-520 Lead-acid battery discharge cut-\line off voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+101 }{\loch
+ChargeRate ChargeCurr A 0-140 Charging current\line }{\loch\b\loch
+102 }{\loch
+DischgRate DischgCurr A 0-140 Discharging current\line }{\loch\b\loch
+103 }{\loch
+MaxBackFlow % 0-100 Feed-in grid power setting\line }{\loch\b\loch
+105 }{\loch
+EOD % 10%-90% Cut SOC for discharging\line }{\loch\b\loch
+106 }{\loch
+TemprLowerLimitDischg 0.1\u8451\'3f 0-65536 Lead-acid Temperature low}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+limit for discharging\line }{\loch\b\loch
+107 }{\loch
+TemprUpperLimitDischg 0.1\u8451\'3f 0-65536 Lead-acid Temperature high}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+limit for discharging\line }{\loch\b\loch
+108 }{\loch
+TemprLowerLimitChg 0.1\u8451\'3f 0-65536 Lead-acid Temperature low}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+limit for charging\line }{\loch\b\loch
+109 }{\loch
+TemprUpperLimitChg 0.1\u8451\'3f 0-65536 Lead-acid Temperature high}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+limit for charging}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+110}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FunctionEn1.ubPVGridO\line ffEn}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit0 0,1\line 0 - disable 1 - enable, AC energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+storage does not have this\line variable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FunctionEn1.ubFastZero\line Export Bit1 0 - disable 1 - enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FunctionEn1.ubMicroGr\line idEn Bit2 0 - disable 1 - enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FunctionEn1.\line ubBatShared Bit3 0 - disable 1 - enable\line FunctionEn1.\line ubChgLastEn Bit4 0 - disable 1 - enable\line FunctionEn1.\line CTSampleRatio Bit5-6}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0 :1/1000 1:1/3000 2:1/2000\line For 12k: CTSampleRatioL2bit,\line Combine CTSampleRatioH2 bit to\line form a 4-bit CTSampleRatio\line 0}{\dbch
+\u65306\'3a}{\loch
+1/1000 1:1/3000 2:1/2000\line 3:1/4000 4:1/6000}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FunctionEn1. BuzzerEn Bit7\line 0-disable 1-enable, only\line available for off-grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+For 12k: DrycontactorCntl En}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FunctionEn1.\line PVCTSampleType Bit8-9 For ACS3600: 0-PV power 1-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SpecLoad\line For 12k :L2N CT reuse 0- no reuse 1-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SpecLoad 2-ACCouple power\line FunctionEn1.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+TakeLoadTogether\line Bit10}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+For off-grid: 0-disable 1- enable,\line for 12K : 0-ongrid disable 1-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FunctionEn1.\line OnGridWorkingMode}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit11\line For 12K: consistant chk mask 0-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+disable 1-enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-self consumption 1-Charge\line First, only available for off-grid\line For 12K: consistantchk mask 0-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+25 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+disable 1-enable\line FunctionEn1.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PVCTSampleRatio Bit12-13 0 : 1/1000 1- 1/3000 2:1/2000\line For 12k: CTSampleRatioL2bit,\line Combine CTSampleRatioH2 bit to\line form a 4-bit CTSampleRatio\line 0}{\dbch
+\u65306\'3a}{\loch
+1/1000 1:1/3000 2:1/2000\line 3:1/4000 4:1/6000}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+FunctionEn1.GreenMod\line eEn Bit14 0-disable 1- enable, only}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+available for off-grid\line For 12K: AbsoluteZeroExport}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-disable 1- enable,\line FunctionEn1.EcoModeE}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+n\line Bit15 0-disable 1- enable, only}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+available for off-grid\line For 12K: 0-20ms 1-EPSRY on\line ahead(10ms)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+112 }{\loch
+SetSystemType 0,1,2,3,4}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Set the single/parallel type\line 0-no parallel (single one)\line 1- Single-phase parallel}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+operation forms a single-phase\line system. (Primary, which will not}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+show on off-grid mode)\line 2-Secondary (will not show on}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+off-grid mode)\line 3-Three phase parallel(Master)\line operation forms a three-phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+System\line 4-2*208(Master)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Option used for two split-\line phase inverter to make up a\line three-phase system}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+113 }{\loch
+SetComposedPhase Write only Set 0 Clear the detected phases}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Write only Set 1-3 Set Composed phase\line 1-R 2-S 3-T}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Read only Bit0-7 Off-grid composed phases}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Read only Bit8-15 On-grid detected phases}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+114 }{\loch
+ClearFunction 1 Parallel Alarm clear 1- clear\line }{\loch\b\loch
+115 }{\loch
+OVFDerateStartPoint 0.01Hz 5000-5200 Over-frequency load}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+reduction start frequency\line point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+116 }{\loch
+PtoUserStartdischg 1W 50W Device starts discharging when\line Ptouser higher than this value}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+117 }{\loch
+PtoUserStartchg 1W -50W\line Device starts charging when\line Ptouser less than this value}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+118 }{\loch
+VbatStartDerating 0.1V >CutVoltForDisc\line hg+2V}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+For lead-acid battery, according\line to given curve decrease\line discharging power when}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+voltage lower than this value}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+119 }{\loch
+wCT_PowerOffset 1W \u177\'b11000W\line signed short int; CT Power\line compensation, PtoUser\line direction is positive.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+26 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+120}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+stSysEnable.bit.HalfHou\line rACChrStartEn Bit0 0,1 0-Disable}{\dbch
+\u65292\'2c}{\loch
+1-Enable}{\dbch
+\u65307\'3b}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Default:0;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+stSysEnable.bit.ACCharg\line eType Bit1~3 0-5}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-disable\line 1-according to time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2-accoridng to voltage\line 3-according to SOC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+4-according to Voltage and\line Time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+5-according to SOC and Time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+For 12K:\line 0 - according to time\line 1 - according to SOC/Volt\line 2 - according to time with\line SOC/Volt}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+stSysEnable.bit.DischgCt\line rlType Bit4~5 0-2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-according to voltage 1-\line according to SOC 2- according}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+to both\line stSysEnable.bit.OnGridE}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ODType Bit6 0-1 0-according to voltage 1-\line according to SOC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+stSysEnable.bit.\line GenChargeType Bit7 0-1 0-According to Battery voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1-According to Battery SOC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+stSysEnable.bit.\line SeparateZeroExportEn Bit8 0-1 0-Disable(Default)}{\dbch
+\u65292\'2c}{\loch
+1-Enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+124 }{\loch
+OVFDerateEndPoint 0.01Hz 5000-5200 Overfrequency load reduction\line ends at the frequency point,\line For poland, Change the\line setting to droop range\line [2,12] in percent, and\line keep the reading\line unchanged}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+125 }{\loch
+SOCLowLimitForEPSDisc\line hg % 0-EOD SOC low limit for EPS discharge}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+126}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e0 Bit0~1 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0:00~0:30 Mark of time period\line charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Default: 0;\line 0 - does not operate, 1-AC\line charge, 2-PV charge, 3 -}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharge\line OptimalChg_DisChg.Tim}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+e1 Bit2~3 0~2\line 0:30~1:00 Mark of time period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e2 Bit4~5 0~2 1:00~1:30 Mark of time period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charging and discharging.\line \u8230\'85.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e7 Bit14~15 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+3:30~4:00 Mark of time period\line charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+127}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e8 Bit0~1 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+4:00~4:30 Mark of time period\line charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Default: 0;\line 0 - does not operate, 1-AC\line charge, 2-PV charge, 3 -}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharge}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e9 Bit2~3 0~2 4:30~5:00 Mark of time period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e10 Bit4~5 0~2 5:00~5:30 Mark of time period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{
+\u8230\'85}{\loch
+.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e15}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit14~15 0~2 7:30~8:00 Mark of time period\line charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+128}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e16 Bit0~1 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+8:00~8:30 Mark of time period\line charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Default: 0;\line 0 - does not operate, 1-AC\line charge, 2-PV charge, 3 -}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharge\line OptimalChg_DisChg.Tim}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+e17 Bit2~3 0~2 8:30~9:00 Mark of time period\line charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e18}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit4~5 0~2\line 9:00~9:30 Mark of time period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{
+\u8230\'85}{\loch
+.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e23 Bit14~15 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+11:30~12:00 Mark of time\line period charging and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+129}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e24 Bit0~1 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+12:00~12:30 Mark of time\line period charging and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharging.\line Default: 0;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0 - does not operate, 1-AC\line charge, 2-PV charge, 3 -}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharge;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e25 Bit2~3 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+12:30~13:00 Mark of time\line period charging and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharging.\line OptimalChg_DisChg.Tim}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+e26 Bit4~5 0~2\line 13:00~13:30 Mark of time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+period charging and\line discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{
+\u8230\'85}{\loch
+.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e31}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit14~15 0~2\line 17:00~17:30 Mark of time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+period charging and\line discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+130}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e32 Bit0~1 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+16:00~16:30 Mark of time\line period charging and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharging.\line 0 - does not operate, 1-AC\line charge, 2-PV charge, 3 -}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharge;}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e33}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit2~3 0~2\line 16:30~17:00 Mark of time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+period charging and\line discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+28 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e34 Bit4~5 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+17:00~17:30 Mark of time\line period charging and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{
+\u8230\'85}{\loch
+.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e39}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit14~15 0~2\line 19:30~20:00 Mark of time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+period charging and\line discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+131}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e40 Bit0~1 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+20:00~20:30 Mark of time\line period charging and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharging.\line 0-does not operate, 1-AC\line charge, 2-PV charge, 3 -}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharge\line OptimalChg_DisChg.Tim}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+e41 Bit2~3 0~2\line 20:30~21:00 Mark of time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+period charging and\line discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e42 Bit4~5 0~2}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+21:00~21:30 Mark of time\line period charging and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+discharging.\line \u8230\'85.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+OptimalChg_DisChg.Tim\line e47 Bit14~15 0~2 23:30~0:00 Mark of time period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charging and discharging.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+132\line }{\loch
+BatCellVoltLow 0.1V 0-200 Battery cell voltage lower limit.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+BatCellVoltHigh 0.1V 0-200 Battery cell voltage upper limit}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+133\line }{\loch
+BatCellSerialNum 1 0-200 Number of battery cells in series\line BatCellParaNum 1 0-200 Number of battery cells in}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+parallel\line }{\loch\b\loch
+134 }{\loch
+UVFDerateStartPoint 0.01Hz 4500-5000 Underfrequency load reduction}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+starting point\line }{\loch\b\loch
+135 }{\loch
+UVFDerateEndPoint 0.01Hz 4500-5000 The end point of}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+underfrequency load reduction,\line For poland, Change the setting\line to droop range [2,12] in\line percent, and keep the\line reading unchanged}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+136 }{\loch
+OVFDerateRatio %Pm/Hz 1-100 Underfrequency load ramp rate\line }{\loch\b\loch
+137 }{\loch
+SpecLoadCompensate w 0-65535 The maximum amount of}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+compensation for a specific load\line }{\loch\b\loch
+138 }{\loch
+ChargePowerPercentC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+MD 0.1% 0-1000 Charging power percentage\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+139 }{\loch
+DischgPowerPercentCM\line D 0.1% 0-1000 Discharging power percentage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line }{\loch\b\loch
+140 }{\loch
+ACChgPowerCMD 0.1% 0-1000 AC charge percentage setting\line }{\loch\b\loch
+141 }{\loch
+ChgFirstPowerCMD 0.1% 0-1000 Charging priority percentage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+29 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+142 }{\loch
+ForcedDischgPowerCM\line D 0.1% 0-1000 Forced discharge percentage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line }{\loch\b\loch
+143 }{\loch
+ActivePowerPercentCM}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+D 0.1% 0-1000 Inverse active percentage\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+144 }{\loch
+FloatChargeVolt 0.1V 500-560 Float charge voltage\line }{\loch\b\loch
+145 }{\loch
+OutputPrioConfig 0-3 0-bat first 1-PV first 2-AC first}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+146 }{\loch
+LineMode 0-2\line 0-APL(90-280V 20ms) 1-UPS\line (170-280V 10ms)2-GEN (90-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+280V 20ms)\line }{\loch\b\loch
+147 }{\loch
+Battery capacity Ah 0-10000 Battery capacity, for unmatched}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+batteries\line }{\loch\b\loch
+148 }{\loch
+Battery nominal Voltage 0.1V 400-590 Battery rating voltage, for}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+unmatched batteries\line }{\loch\b\loch
+149 }{\loch
+EqualizationVolt 500-590 Battery equalization voltage\line }{\loch\b\loch
+150 }{\loch
+EqualizationInterval Day 0-365 Balancing interval\line }{\loch\b\loch
+151 }{\loch
+EqualizationTime hour 0-24 Balancing duration}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+152\line }{\loch
+ACFirstStartHour hour 0-23 AC load start time_hours setting\line ACFirstStartMinute min 0-59 AC load start time _minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line }{\loch\b\loch
+153}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACFirstEndHour hour 0-23 AC load end time _hours setting\line ACFirstEndMinute min 0-59 AC load end ime_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line }{\loch\b\loch
+154}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACFirstStartHour1 hour 0-23 AC load start time_hours setting\line ACFirstStartMinute1 min 0-59 AC load start time_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line }{\loch\b\loch
+155}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACFirstEndHour1 hour 0-23 AC load end time_hours setting\line ACFirstEndMinute1 min 0-59 AC load end time_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+156 }{\loch
+ACFirstStartHour2 hour 0-23 AC load start time_Hours\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+ACFirstStartMinute2 min 0-59 AC load start time_minutes\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+157\line }{\loch
+ACFirstEndHour2 hour 0-23 AC load end time_hours setting\line ACFirstEndMinute2 min 0-59 AC load end time_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+158 }{\loch
+ACChgStartVolt 0.1V 385-520\line Battery voltage of AC charging\line start, which will be valid after\line selecting ACChg according to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+159 }{\loch
+ACChgEndVolt 0.1V 480-590\line Battery voltage of AC charging\line cut-off, effective after selecting\line ACChg according to voltage.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+160 }{\loch
+ACChgStartSOC % 0-90\line SOC of AC charging start , which}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+will be valid after selecting\line ACChg according to SOC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+30 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+161}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+162 }{\loch
+BatLowVoltage\line 0.1V 400-500}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Battery under-voltage alarm\line point, which will be valid after\line selecting DisChgCtrl according}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+to voltage or both voltage\line and time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+163 }{\loch
+BatLowBackVoltage 0.1V 420-520\line Battery under-voltage alarm\line recovery point, which will be\line valid after selecting DisChgCtrl\line according to voltage or\line bothvoltage and time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+164 }{\loch
+BatLowSOC % 0-90\line Battery under-voltage alarm}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+point, which will be valid after\line selecting DisChgCtrl according}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+to SOC or both SOC and\line time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+165 }{\loch
+BatLowBackSOC % 20-100\line Battery under-voltage alarm\line recovery point, which will be\line valid after selecting DisChgCtrl}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+according to SOC or both SOC\line and time}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+166 }{\loch
+BatLowtoUtilityVoltage\line 0.1V 444-514}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Voltage point for battery\line undervoltage to grid transfer,}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+which will be valid after\line selecting DisChgCtrl according}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+to voltage or both.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+167 }{\loch
+BatLowtoUtilitySOC % 0-100\line SOC for battery under-voltage to\line grid transfer, which will be valid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+after selecting DisChgCtrl\line according to SOC or both.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+168 }{\loch
+ACCharge Bat Current A 0-140 Charge Current from AC\line }{\loch\b\loch
+169 }{\loch
+OngridEOD_Voltage 0.1V 400-560 On-grid end of dischage voltage\line }{\loch\b\loch
+...}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+171\line }{\loch
+SOCCurve_BatVolt1 0.1V 400-600}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Voltage point 1 for SOC\line calibration}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+172 }{\loch
+SOCCurve_BatVolt 2 0.1V 400-600\line Voltage point 2 for SOC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+calibration\line }{\loch\b\loch
+173 }{\loch
+SOCCurve_SOC1 1% 0-100}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SOC reading based on Voltage\line point 1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+174 }{\loch
+SOCCurve_SOC2 1% 0-100\line SOC reading based on Voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+point 2\line }{\loch\b\loch
+175 }{\loch
+SOCCurve_InnerResistance m\u937\'3f 0-100 Inner resistance of the battery\line }{\loch\b\loch
+176 }{\loch
+MaxGridInputPower W Max. Grid import power}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+limitation\line }{\loch\b\loch
+177 }{\loch
+GenRatePower W The rated power of generator}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+input}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+179}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.ACCTDire\line ction Bit0 0,1 0-Normal 1-Reversed}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.PVCTDire\line ction Bit1 0,1 0-Normal 1-Reversed}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.AFCIAlar\line mClr Bit2 0,1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-null 1-clear\line For ACS 0-single phase compensation\line }{\dbch
+\u65292\'2c}{\loch
+1-three phase compensation}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.BatWake\line upEn PVSellFirst Bit3 0,1 0-Disable 1-Enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+uFunctionEn2.VoltWatt\line En Bit4 0,1 0-Disable 1-Enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.TriptimeU\line nit Bit5 0,1 0-Disable 1-Enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.ActPower\line CMDEn Bit6 0,1 0-Disable 1-Enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.ubGridPe\line akShaving Bit7 0,1 0-Disable 1-Enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.ubGenPe\line akShaving Bit8 0,1 0-Disable 1-Enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.ubBatChg\line control Bit9 0,1 0-SOC,1-Volt}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.ubBatDisc\line hgControl Bit10 0,1 0-SOC,1-Volt}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.ubACcou\line pling Bit11 0,1 0-Disable 1-Enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.ubPVArcE\line n}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit12 0,1 0-Disable 1-Enable\line uFunctionEn2.\line ubSmartLoadEn Bit13 0,1 0-Generator 1-Smart Load}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.ubRSDDis\line able Bit14 0,1 0-Enable 1-Disable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunctionEn2.OnGridAl\line waysOn Bit15 0,1 0-Disable 1-Enable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+180 }{\loch
+AFCIArcThreshold\line }{\loch\b\loch
+181 }{\loch
+VoltWatt_V1 0.1V 1.05Vn-1.09Vn, default1.06Vn\line }{\loch\b\loch
+182 }{\loch
+VoltWatt_V2 0.1V (V1+0.01Vn)-1.10Vn,}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+default1.1Vn\line }{\loch\b\loch
+183 }{\loch
+VoltWatt_DelayTime Main cnt 500-60000ms Default 10000ms\line }{\loch\b\loch
+184 }{\loch
+VoltWatt_P2 % 0-200\line }{\loch\b\loch
+185 }{\loch
+Vref_QV 0.1V\line }{\loch\b\loch
+186 }{\loch
+Vref_filtertime s 300-5000\line }{\loch\b\loch
+187 }{\loch
+Q3_QV %\line }{\loch\b\loch
+188 }{\loch
+Q4_QV %\line }{\loch\b\loch
+189 }{\loch
+P1_QP %\line }{\loch\b\loch
+190 }{\loch
+P2_QP %\line }{\loch\b\loch
+191 }{\loch
+P3_QP %\line }{\loch\b\loch
+192 }{\loch
+P4_QP %\line }{\loch\b\loch
+193 }{\loch
+UVFIncreaseRatio %Pm/Hz 1-100 Underfrequency load ramp rate\line }{\loch\b\loch
+194 }{\loch
+GenChgStartVolt 0.1V 384-520 Intitial voltage for generator}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charging the battery, which will}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+32 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+be valid after selecting GenChg\line according to voltage.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+195 }{\loch
+GenChgEndVolt 0.1V 480-590\line Battery voltage at the end of\line generator charging, which will\line be valid after selecting GenChg}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+according to voltage.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+196 }{\loch
+GenChgStartSOC % 0-90\line SOC limit for generator charging\line the battery, which will be valid\line after selecting charge according\line to SOC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+197 }{\loch
+GenChgEndSOC % 20-100\line SOC limit to end thegenerator\line charging, which will be valid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+after selecting charge\line according to SOC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+198 }{\loch
+MaxGenChgBatCurr A 0-4000 Max. Charge current from\line generator}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+199 }{\loch
+OverTempDeratePoint 0.1\u8451\'3f 600-900 Overtemperature load\line reduction point}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+201 }{\loch
+ChgFirstEndVolt 0.1V 480-590 Charging priority voltage limit\line }{\loch\b\loch
+202 }{\loch
+ForceDichgEndVolt 0.1V 400-560 Forced discharge voltage limit\line }{\loch\b\loch
+203 }{\loch
+GridRegulation Grid regulation settings\line }{\loch\b\loch
+204 }{\loch
+LeadCapacity Ah 50-5000 Capacity of the lead acid battery}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+205 }{\loch
+GridType}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-Split240V/120V\line 1-3phase 208V/120V}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2-Single 240V\line 3-Single 230V}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+4-Split 200V/100V\line For three-phase inverter:}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-Delta 230/230V\line 1-Star 120V/208V\line 2-Star 240V/415V\line 3-Star 230V/400V}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+4-NULL\line 5-Star 220V/380V.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+206 }{\loch
+GridPeakShavingPower 0.1kw 0-255\line }{\loch\b\loch
+207 }{\loch
+GridPeakShavingSOC % 0-100\line }{\loch\b\loch
+208 }{\loch
+GridPeakShavingVolt 0.1V 480-590}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+209 }{\loch
+PeakShavingStartHour hour 0-23 PeakShaving start time_Hour\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PeakShavingStartMinut\line e min 0-59 PeakShaving start time_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+210 }{\loch
+PeakShavingEndHour hour 0-23 PeakShaving end time_hours\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PeakShavingEndMinute min 0-59 PeakShaving end time_minutes\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+211 }{\loch
+PeakShavingStartHour1 hour 0-23 PeakShaving sttart ime_hours\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PeakShavingStartMinut\line e1 min 0-59 PeakShaving start time_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line }{\loch\b\loch
+212 }{\loch
+PeakShavingEndHour1 hour 0-23 PeakShaving end time_ hours}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+33 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+setting\line PeakShavingEndMinute 1 min 0-59 PeakShaving end}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+time_minutes\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+213 }{\loch
+SmartLoadOnVolt 0.1V 480-590\line }{\loch\b\loch
+214 }{\loch
+SmartLoadOffVolt 0.1V 400-520\line }{\loch\b\loch
+215 }{\loch
+SmartLoadOnSOC % 0-100\line }{\loch\b\loch
+216 }{\loch
+SmartLoadOffSOC % 0-100\line }{\loch\b\loch
+217 }{\loch
+StartPVpower 0.1kW 0-120\line }{\loch\b\loch
+218 }{\loch
+GridPeakShavingSOC1 % 0-100\line }{\loch\b\loch
+219 }{\loch
+GridPeakShavingVolt1 0.1V 480-590\line }{\loch\b\loch
+220 }{\loch
+ACCoupleStartSOC % 0-100\line }{\loch\b\loch
+221 }{\loch
+ACCoupleEndSOC % 0-255\line }{\loch\b\loch
+222 }{\loch
+ACCoupleStartVolt 0.1V 400-595\line }{\loch\b\loch
+223 }{\loch
+ACCoupleEndVolt 0.1V 420-800}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+224}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+LCDVersion But0~7 0-255}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+LCDScreenType Bit8 0-1\line 0-screen of B size 1-screen of S}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+size}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+LCDODM Bit9~15 0-127\line }{\loch\b\loch
+225 }{\loch
+LCDPassword 0~65535 Password for LCD Advanced page}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+227 BatStopChgSOC % 10-101}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+When battery SOC reaches set\line value , inverter will stop}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charging the battery , and when\line the battery SOC < = (Set value\line -5), inverter will return charging}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+the battery}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+228 BatStopChgVolt 0.1V 400-595}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+When battery Voltage reaches\line set value , inverter will stop}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charging the battery , and when\line the battery Volt < = (Set value -}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+20 ), inverter will return\line charging the battery}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+230}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+unMeterCfg.MetersNum Bit0~3 0-15 Meter Numbers\line RSVD0 Bit4~7}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+unMeterCfg.MeterMeasureType Bit8 0,1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-Meter1(Addr=1)measure AC\line Meter2(Addr=2)measure PV}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1-reversed}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+unMeterCfg.InstallPhase Bit9~10 0-3}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0-R phase}{\dbch
+\u65292\'2c}{\loch
+1-S phase}{\dbch
+\u65292\'2c}{\loch
+2-T\line phase}{\dbch
+\u65292\'2c}{\loch
+ensure the Install\line Phases of all meters are the\line same}{\dbch
+\u65292\'2c}{\loch
+(only valid for 3phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+meter)\line RSVD1 Bit11~12 0-3\line RSVD2 Bit13~15 RVSD}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+231\line }{\loch
+unResetRecord.bit.G100 Bit0 0,1 1-Reset the G100 lockout state\line unResetRecord.bit.Rsvd RVSD}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+232 }{\loch
+GridPeakShavingPower1 0.1kW 0-255}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+233}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunction4En. ubQuickChgStartEn Bit0 0,1\line uFunction4En. ubBattBackupEn Bit1 0,1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunction4En. ubMaintenaceEn Bit2 0}{\dbch
+\u65292\'2c}{\loch
+1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1-Enable}{\dbch
+\u65292\'2c }{\loch
+Once enabled ,andif\line battery is detected to be never got\line charged fully within 30days }{\dbch
+\u65292\'2c}{\loch
+then\line battery will get fully charged from\line grid at 23}{\dbch
+\u65306\'3a}{\loch
+00 of the last day of}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+30days duration}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunction4En.ubWorkingMode Bit3 0}{\dbch
+\u65292\'2c}{\loch
+1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0}{\dbch
+\u65306\'3a}{\loch
+arranging the work mode 1 for a\line 7-days time period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1}{\dbch
+\u65306\'3a}{\loch
+arranging the work mode 2 for a\line 7-days time period}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunction4En.ubDryContactorMultiplex Bit4-7}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0 - null\line 1 - RSD\line 2 - Dark Start\line 3 - Smart load\line 4 - Non-critical Load}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uFunction4En.ubExCTPosition Bit8-9 0-GridtoUser 1-InvGridPort\line uFunction4En.ubOverFreq_fstop Bit10 0}{\dbch
+\u65292\'2c}{\loch
+1 0}{\dbch
+\u65306\'3a}{\loch
+deactivated , 1}{\dbch
+\u65306\'3a}{\loch
+activated}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+234 }{\loch
+QuickChgTime min}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+235\line }{\loch
+uwNoFullChgDay}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bit0~Bit7(Read\line only ) 0~255}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Days counter since the last time that\line battery SOC>=99}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+uwNoFullChgDayNumSet Bit8~Bit15 0~255\line Calibration period (Days) from the\line last time that battery SOC< 99}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+236 }{\loch
+FloatChgThreshold 0.01C 1-255\line When charge current in CV getting\line lower than this setting, switch to float}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+charge\line }{\loch\b\loch
+237 }{\loch
+GenCoolDownTime 0.1min 1-255}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Gen cool down time when dry\line contactor is off}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+241 }{\loch
+Permit Service\line 0-disable ,}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+non 0-enable\line }{\loch\b\loch
+242 }{\loch
+uwNPEThreshold 0.1V 0-65535}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Zero ground detection voltage range\line setting value}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+243 }{\loch
+...}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+244\line }{\loch
+Bootloader_Version Bit0-7 0-255 Bootloader Version}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Bootloader_UpdateFlag Bit8-15\line }{\loch\b\loch
+245 }{\loch
+FlashSize 0-65535\line }{\loch\b\loch
+248 }{\loch
+WattNode uwCtAmps1 A 0-6000 CT1 ratio of wattnode meters\line }{\loch\b\loch
+249 }{\loch
+WattNode uwCtAmps2 A 0-6000 CT2 ratio of wattnode meters\line }{\loch\b\loch
+250 }{\loch
+WattNode uwCtAmps3 A 0-6000 CT3 ratio of wattnode meters}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+251}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+WattNode uwCtDirections1 Bit0 0,1\line CT1 direction of wattnode meter}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+or direction of external CT for three-\line phase inverter R-phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+WattNode uwCtDirections2 Bit1 0,1\line CT2 direction of wattnode meter or\line direction of external CT for three-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+phase inverter S-phase}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+WattNode uwCtDirections3 Bit2 0,1\line CT3 direction of wattnode meter or\line direction of external CT for three-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+phase inverter T-phase\line WattNode_UpdateFrequency Bit3~5 0~7}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+0 - 1S 1 - 5S 2 - 20S 3 - 60S\line 4 - 100 ms 5- 200ms 6- 500 ms}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Resvd Bit6~15 \u8230\'85 \u8230\'85\line }{\loch\b\loch
+252 }{\loch
+NEC120BusBarLimit A For NEC 120% Rule\line }{\loch\b\loch
+253 }{\loch
+DeltaSOC % 5~80}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SOC hysteresis, only set lower limit,\line to be improved}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+254 }{\loch
+DeltaVolt 0.1V 20~100\line Volt hysteresis, only set lower limit,}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+to be improved}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+256\line }{\loch
+GenStartHour hour 0-23}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Generator start time_Hour\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+GenStartMinute min 0-59\line Generator start time_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+257\line }{\loch
+GenEndHour hour 0-23}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Generator end time_hours\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+GenEndMinute min 0-59\line Generator end time_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line }{\loch\b\loch
+258}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+GenStartHour1 hour 0-23\line Generator start time_Hour}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+GenStartMinute1 min 0-59\line Generator start time_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+259\line }{\loch
+GenEndHour1 hour 0-23}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Generator end time_hours\line setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+GenEndMinute1 min 0-59\line Generator end time_minutes}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+setting\line }{\loch\b\loch
+260 }{\loch
+uwBusVoltHightSet 1 V 550-595}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+BUS overvoltage point alarm voltage\line setting value}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+261 }{\loch
+bDisRecovSocThresh % Min:5%\line Battery discharge recovery threshold}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\dbch
+\u65306\'3a}{\loch
+SOC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+bDisRecovVoltThresh 0.1V Min:1V\line Battery discharge recovery threshold}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\dbch
+\u65306\'3a}{\loch
+Volt\line }{\loch\b\loch
+Table 8 Hold register mapping table}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+4. Appendix\line }{\loch
+1) Definition of the operation mode of on/off-grid energy storage all in one machine.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Status\line code Device work status Remark}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+0x00 }{\loch
+Standby\line }{\loch\b\loch
+0x01 }{\loch
+Fault\line }{\loch\b\loch
+0x02 }{\loch
+Programming}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0x04 }{\loch
+PV\line PV connected to grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV power feed back to grid, AC energy storage does not\line have this variable.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0x08 }{\loch
+PV\line PV charging}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+PV power charge the battery, AC energy storage does not\line have this variable.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0x0C }{\loch
+PV charging connected to\line the grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+A portion of the PV power is used for battery charging,\line while another portion is used for feeding back to grid, and}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+AC energy storage does not have this variable.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0x10\line }{\loch
+The battery connect to the}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+grid The power od battery discharging will feed back to grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0x14\line }{\loch
+(PV+ battery) connected to}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+the grid\line Battery discharge and PV energy are connected to the grid}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+together, and AC energy storage does not have this\line variable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0x20 }{\loch
+AC charging Grid charges the battery}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0x28 }{\loch
+(PV+AC) charging\line PV and grid power charge the battery together, and AC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+energy storage does not have this variable.\line }{\loch\b\loch
+0x40 }{\loch
+The battery is off-grid off-grid mode, battery discharge\line }{\loch\b\loch
+0x60 }{\loch
+Off-grid + battery charging On-grid system charge the battery (AC Coupled)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0x80 }{\loch
+PV off-grid\line PV power fluctuates randomly, the off-grid output is}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+unstable, and the inverter is prohibited fromworking in\line this state, and AC energy storage does not have this}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+variable.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0xC0 }{\loch
+(PV+ battery) off-grid In 0ff-gird mode, PV power and battery discharge, AC\line energy storage does not have this variable.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+0x88 }{\loch
+PV charging + off-grid\line A portion of the PV power is used for off-grid output, while\line another portion is used for battery charging, and AC energy}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+storage does not have this variable.\line }{\loch\b\loch
+Table 9 Operational mode definitions}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2}{\dbch
+\u65289\'29 }{\loch
+Fault and Alarm Code Definitions}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Bit0-31 Fault information Fault\line Code Warning information Warning}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+Code\line }{\loch
+0 Internal communication}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+failure 1 E000 Battery communication\line failed W000}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+1 Model fault E001 AFCI communication\line failure W001}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+2 rsvd E002\line AFCI High}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Battery low temperature\line AFCI High}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W002}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+3 rsvd E003 Meter communication\line failed W003}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+4 rsvd E004 The battery cannot be W004\line Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+35 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+charged and discharged\line 5 rsvd E005 The automated test failed W005\line 6 rsvd E006 RSD Active W006\line 7 rsvd E007 LCD communication}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+failure W007}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+8 Parallel CAN communication\line failure E008 Software version}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+mismatch W008}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+9 The host is missing E009 The fan is stuck and not\line rotating W009}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+10\line The rated power output of\line multiple hosts or parallel\line machines is inconsistent}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+8-12K:Inconsistent rated power\line output for grid connection\line Trip6-20k:Inconsistent rated\line power output for grid\line connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+E010 Rsvd\line Trip6-20k:\line Grid overload}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W010}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+11\line The AC of the parallel system\line is inconsistent or the safety}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+settings of the parallel system\line are inconsistent}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+8-12K:Inconsistent parallel\line machine safety regulations\line Trip6-20k:Inconsistent parallel\line machine safety regulations}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+E011\line The number of secondary}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+units for parallel\line operation exceeds the}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Limit\line Trip6-20k:Rsvd}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W011}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+12 UPS short circuit E012\line Battery reverse MOS\line becomes abnormal\line 8-12k:The parallel\line system is experiencing\line phase loss\line Trip6-20k:The parallel\line system is experiencing\line phase loss}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W012}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+13 UPS reverse current E013\line Temperature of the\line radiator is out of range\line 8-12k:The parallel\line system does not have a\line designated primary unit\line Trip6-20k:The parallel\line system does not have a\line designated primary unit}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W013}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+14 BUS short circuit E014 Set up multiple hosts in\line the parallel system W014}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+15 The phase of the three-phase\line parallel system is abnormal E015 Battery reverse W015}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+16 Relay failure E016 No grid connection W016}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+17 Internal communication\line failure 2 E017 The grid voltage exceeds}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+the specified range W017}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+18 Internal communication\line failure 3}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+E018\line The grid frequency\line exceeds the specified}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+range\line W018}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+19 BUS overvoltage E019 rsvd W019}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+20 EPS connection fault E020\line The insulation resistance\line is low, and AC energy\line storage does not have}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+this variable\line W020}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+21 PV overvoltage, AC energy\line storage without this fault E021 The leakage current is too}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+high W021}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+22 Overcurrent protection E022 DCI exceeded the\line standard W022}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+23 Neutral fault E023\line PV short circuit, AC}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+energy storage does not\line have this variable}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W023}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+24 PV short circuit, AC energy\line storage has no such fault E024 Rsvd}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Trip6-20k:GFCI module\line failure}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W024}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+25 Heatsink temperature out of\line range E025 Battery overvoltage W025}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+26 Internal failure E026 Battery undervoltage W026}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch
+27 Consistency failure E027 Battery open circuit W027\line 28 The generator connection in}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+parallel system is inconsistent E028 EPS overload W028}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+29 Parallel synchronization\line triggers signal loss E029 EPS voltage high W029}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+30 rsvd E030 Meter reversed W030}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+31 Internal communication\line failure 4 E031 DCV exceeded the}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+standard W031\line }{\loch\b\loch
+Table 10 Fault and alarm definitions}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+FaultCode Fault decription LCD display Trouble shooting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E000 }{\loch
+Internal communication\line fault1}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+E000 Restart inverter, if the error still exist,\line contact us (DSP&M3)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E001 }{\loch
+Model fault E001 Reset model, check if safety standard\line switch is at the right place}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E002 }{\loch
+rsvd E002}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E003 }{\loch
+rsvd E003}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E004 }{\loch
+rsvd E004}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E005 }{\loch
+rsvd E005}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E006 }{\loch
+rsvd E006\line }{\loch\b\loch
+E007 }{\loch
+rsvd E007\line }{\loch\b\loch
+E008 Parallel CAN}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+communication failure }{\loch
+E008 Check CAN cable connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E009 The host is missing }{\loch
+E009 Check parallel setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+E010}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Muti Master units in parallel\line system}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+8-12KW : Para\line Rating Watt Diff}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Inverters are with different\line power rating configurations}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+E010 Check parallel setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E011\line }{\loch
+Inconsistent AC\line connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+8-12k: grid safety\line settings in parallel\line computing systems.}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+E011 Check parallel connection\line Check parallel setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E012 UPS }{\loch
+E012 Check parallel connection or contact us\line Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+37 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+UPS short circuit}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+E013\line UPS}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+UPS backfilling }{\loch
+E013 Restart inverter, if the error still exist,\line contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E014 BUS BUS short circuit }{\loch
+E014 Contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+E015\line Phase abnormality in a\line three-phase parallel}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+system\line E015 Check parallel connection and setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E016 }{\loch
+Relay fault E016 Restart inverter, if the error still exist,\line contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E017 }{\loch
+Internal communication\line fault2 E017 Restart inverter, if the error still exist,}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+contact us (DSP&M8)\line }{\loch\b\loch
+E018 }{\loch
+Internal communication}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+fault3 E018 Restart inverter, if the error still exist,\line contact us (DSP&M3)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E019 }{\loch
+Bus voltage high E019 Check PV input connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E020 }{\loch
+EPS connection fault EPS CN Fault Check EPS and AC connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E021 }{\loch
+PV voltage high PV voltage high Check PV input connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E023 }{\loch
+Neutral fault Neutral fault Check neutral connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E024 }{\loch
+PV short E024 Check PV connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E025 }{\loch
+Temperature over range NTC Open Check NTC connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E026 }{\loch
+Internal Fault E026 Restart inverter, if the error still exist,\line contact us (Bus sample)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E027\line }{\loch
+Sample inconsistant}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+between main and slave\line CPU}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+E027 Restart inverter, if the error still exist,\line contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+E028}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+SNA 3000-6000: sync signal\line lost in parallel system ;\line The parallel synchronization\line signal is lost\line 8-12KW :Para Gen\line connection unAccord;\line the generator connection is\line abnormal}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+E028\line Check CAN cable connection\line Check Gen connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E029\line }{\loch
+sync triger signal lost in}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+parallel system.\line Parallel synchronization}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+triggers signal loss\line E029 Check CAN cable connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+E030 }{\loch
+rsvd E030}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+38 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+E031 }{\loch
+Internal communication\line fault4 E031 Restart inverter, if the error still exist,}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+contact us (DSP&M8)\line }{\loch\b\loch
+Table 11 Failure Information Table}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+WarningCode Warning decription LCD display Trouble shooting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W000 }{\loch
+Communication failure\line with battery}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Batery Com Fault Check communication cable, if the\line warning still exist, contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+W001\line W002}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W003 }{\loch
+Communication failure\line with meter}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Meter Com Fault Check communication cable, if the\line warning still exist, contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W004 }{\loch
+Battery failure Battery failure Restart battery, if the warning still\line exist, contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W005 }{\loch
+AutoTest failure AutoTest failure Restart inverter, if the error still\line exist, contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+W006\line W007}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+LCD communication\line Fault W007 Restart battery, if the warning still}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+exist, contact us\line }{\loch\b\loch
+W008 }{\loch
+Software mismatch W008\line }{\loch\b\loch
+W009 }{\loch
+Fan Stuck W009 Restart inverter, if the error still}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+exist, contact us\line }{\loch\b\loch
+W010 }{\loch
+Same para address W010\line }{\loch\b\loch
+W011 }{\loch
+Secondary overflow W011 Check parallel number\line }{\loch\b\loch
+W012}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+BatOnMos\line 8-12KW}{\dbch
+\u65306\'3a}{\loch
+Phase loss\line for parallel system}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W012 Restart inverter, if the error still\line exist, contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W013\line }{\loch
+Overtemprature}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+8-12KW}{\dbch
+\u65306\'3a}{\loch
+No primary\line set in parallel system}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W013\line Restart inverter(or check parallel\line setting), if the error still exist,}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+contact us\line }{\loch\b\loch
+W014 }{\loch
+8-12KW}{\dbch
+\u65306\'3a}{\loch
+Muti-}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Primary set in\line parallel system}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W014 Check parallel setting}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W015 }{\loch
+Battery Reverse W015 Check battery input\line polarities(avai lable for SNA\line unit)}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W016 }{\loch
+No AC Connection No AC Connection Check AC Connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W017 }{\loch
+AC Voltage out of range AC V Outrange Check AC voltage}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W018 }{\loch
+AC Frequency out of\line range AC F Outrange Check AC frequency}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W019\line }{\loch
+AC inconsistent in\line parallel system2\line The parallel AC is}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+inconsistent}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+W019 Check parallel connection or\line contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+39 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+W020 }{\loch
+PV Isolation low PV Isolation low Restart inverter, if the error still\line exist, contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W021 }{\loch
+Leakage I high Leakage I high Restart inverter, if the error still\line exist, contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W022 }{\loch
+DC injection high DC injection high Restart inverter, if the error still\line exist, contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W023 }{\loch
+PV short circuit PV short Check PV input connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+W024}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W025 }{\loch
+Battery voltage high Bat Volt High Check battery connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W026 }{\loch
+Battery voltage low Bat Volt Low Check battery connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W027 }{\loch
+Battery open Battery open Check battery connection\line }{\loch\b\loch
+W028 }{\loch
+EPS Overload EPS Over load Check EPS load}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W030 }{\loch
+Meter Reversed W030 Check meter connection}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+W031 }{\loch
+EPS DCV high W031 Restart inverter, if the error still\line exist, contact us}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Table 12 Alarm information table}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+3}{\dbch
+\u65289\'29}{\loch
+On-grid Regulatory Mapping Table}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Bit0-31 Type of\line safety Remark American model voltage system}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+Safety type\line 0 }{\loch
+General Same VDE0126 UL1741&IEEE1547\line }{\loch\b\loch
+1 }{\loch
+VDE0126 Germany Hawaii}{\dbch
+\u65288\'28}{\loch
+HECO}{\dbch
+\u65289\'29}{\loch
+\line }{\loch\b\loch
+2 }{\loch
+AS4777 Australia USA(rule21)\line }{\loch\b\loch
+3 }{\loch
+NEWZEALAND New Zealand PR-LUMA\line }{\loch\b\loch
+4 }{\loch
+CGC China KIUC\line }{\loch\b\loch
+5 }{\loch
+G59 United Kingdom Brazil(US)\line }{\loch\b\loch
+6 }{\loch
+G83 United Kingdom\line }{\loch\b\loch
+7 }{\loch
+N4105 Germany\line }{\loch\b\loch
+8 }{\loch
+CEI0-21 Italy\line }{\loch\b\loch
+9 }{\loch
+EN50438\line }{\loch\b\loch
+10 }{\loch
+EN50438_Finl}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+and Finland\line }{\loch\b\loch
+11 }{\loch
+Japan Japan\line }{\loch\b\loch
+12 }{\loch
+PEA Thailand\line }{\loch\b\loch
+13 }{\loch
+MEA Thailand}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+40 }{\loch
+/ }{\loch\b\loch
+41}
+\par \pard\plain \s21\loch\sb0\sa283\ql\fi0\li0\lin0\ri0\rin0\ltrpar{\loch\b\loch
+14 }{\loch
+EN50438_Irela\line nd Ireland}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+15 }{\loch
+Czech Czech Republic\line }{\loch\b\loch
+16 }{\loch
+South Africa South Africa}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch\b\loch
+17 }{\loch
+Barbadors Barbadors\line }{\loch\b\loch
+18 }{\loch
+CEI021ARETI\line }{\loch\b\loch
+19 }{\loch
+EN50549\line }{\loch\b\loch
+20 }{\loch
+Denmark Denmark\line }{\loch\b\loch
+21 }{\loch
+Poland Poland\line }{\loch\b\loch
+22 }{\loch
+Spain Spain\line }{\loch\b\loch
+23 }{\loch
+C10/C11 Belgium\line }{\loch\b\loch
+24 }{\loch
+TOR Austria\line }{\loch\b\loch
+25 }{\loch
+Denmark-2 Denmark(DK2)\line }{\loch\b\loch
+26 }{\loch
+EU_Brazil Brazil(EU)\line }{\loch\b\loch
+27\line 28\line 29\line 30\line 31}
+\par \pard\plain \s21\loch\sb0\sa283\ql\ltrpar{\loch\b\loch
+Table 13: on-grid regulatory mapping table}
+\par \pard\plain \s21\loch\sb0\sa283\ql\sb0\sa283\ltrpar{\loch
+Shenzhen Lux Power Technology Co., Ltd www.luxpowertek.com\line }{\loch\b\loch
+41 }{\loch
+/ }{\loch\b\loch
+41}
+\par }

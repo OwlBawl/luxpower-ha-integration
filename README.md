@@ -16,6 +16,7 @@ This integration connects directly to your inverter's WiFi dongle, providing rea
 
 * **Real-time Monitoring:** Track PV power, battery state of charge (SOC), grid import/export, load consumption, and more.
 * **Inverter Control:** Change charge/discharge currents, set timed charging/discharging periods, and enable/disable features like grid feed-in.
+* **Dual Protocol Support:** Connect via Modbus TCP (WiFi dongle) or Modbus RTU (direct RS-485/USB connection)
 * **Organized Device Structure:** (v0.2.0+) Entities are automatically grouped into logical sub-devices (PV, Grid, EPS, Generator, Battery, Temperatures & Diagnostics, Settings & Schedules) for better organization in Home Assistant.
 * **Detailed States:** A user-friendly text sensor shows exactly what the inverter is doing (e.g., "PV Powering Load & Charging Battery").
 * **Calculated Sensors:** Includes derived sensors like "Load Percentage" for a clearer view of your system's performance.
@@ -23,7 +24,11 @@ This integration connects directly to your inverter's WiFi dongle, providing rea
 
 ### Prerequisites
 
+**For Modbus TCP (WiFi Dongle):**
 Your LuxPower inverter's WiFi data logging dongle must be connected to the same local network as your Home Assistant instance. You will need to know its IP address.
+
+**For Modbus RTU (Direct RS-485/USB Connection):**
+You'll need an RS-485 to USB converter (FTDI FT232, Waveshare, etc.) connected between your Home Assistant host and the inverter's RS-485 port. See the [RTU Setup Guide](RTU_SETUP.md) for detailed instructions.
 
 ### HACS (Home Assistant Community Store)
 
@@ -45,9 +50,14 @@ Configuration is done entirely through the Home Assistant UI.
 
 1.  Go to **Settings** > **Devices & Services**.
 2.  Click **Add Integration** and search for **"Luxpower Inverter (Modbus)"**.
-3.  Fill in the required details for your inverter.
+3.  **Select your connection protocol:**
+    - **Modbus TCP** - For WiFi dongle connections
+    - **Modbus RTU** - For direct RS-485/USB connections ([Setup Guide](RTU_SETUP.md))
+4.  Fill in the required details for your chosen protocol.
 
 ### Configuration Options
+
+#### Modbus TCP (WiFi Dongle)
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
@@ -62,6 +72,43 @@ Configuration is done entirely through the Home Assistant UI.
 | **Register Block Size** | integer | (Optional) Size of register blocks to read. Use `125` (default) for most inverters, use `40` for older firmware versions that don't support larger blocks. |
 | **Connection Retry Attempts** | integer | Number of connection retry attempts before giving up (default is 3). |
 | **Enable Device Grouping** | boolean | (v0.2.0+) Group entities into logical sub-devices for better organization (default: enabled). |
+
+#### Modbus RTU (RS-485/USB Direct Connection)
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| **Serial Port** | string | **(Required)** The serial port of your RS-485 converter (e.g., `/dev/ttyUSB0` on Linux, `COM3` on Windows). |
+| **Baud Rate** | integer | **(Required)** Serial communication speed. LuxPower specification: **19200 bps** (default). |
+| **Parity** | string | **(Required)** Parity bit setting. LuxPower specification: **N** (None). |
+| **Stop Bits** | integer | **(Required)** Number of stop bits. LuxPower specification: **1**. |
+| **Data Bits** | integer | **(Required)** Number of data bits. LuxPower specification: **8**. |
+| **Slave ID** | integer | **(Required)** Modbus slave address (1-247). Default is typically **1**. |
+| **Polling Interval** | integer | **(Required)** How often (in seconds) to poll the inverter. **Minimum 1 second** per protocol specification. Default is 60. |
+| **Inverter Rated Power**| integer | **(Required)** The rated power of your inverter in Watts (e.g., `5000` for a 5kW model). |
+| **Entity Prefix** | string | (Optional) A custom prefix for all entity names (e.g., 'LXP'). Leave blank for no prefix. |
+| **Read-Only Mode** | boolean| (Optional) See the important warning below before changing this setting. |
+| **Register Block Size** | integer | (Optional) Size of register blocks to read. Use `125` (default) for most inverters, use `40` for older firmware or if experiencing communication issues. |
+| **Connection Retry Attempts** | integer | Number of connection retry attempts before giving up (default is 3). |
+| **Enable Device Grouping** | boolean | (v0.2.0+) Group entities into logical sub-devices for better organization (default: enabled). |
+
+> [!NOTE]
+> ### Modbus RTU vs TCP
+> 
+> **RTU (RS-485/USB):**
+> - ✅ Direct wired connection (more reliable)
+> - ✅ No WiFi dongle needed
+> - ✅ Works without network infrastructure
+> - ❌ Requires physical access and RS-485 hardware
+> - ❌ Slightly more complex setup
+> 
+> **TCP (WiFi Dongle):**
+> - ✅ Wireless connection (easier physical installation)
+> - ✅ No additional hardware needed
+> - ✅ Simpler setup
+> - ❌ Depends on WiFi/network stability
+> - ❌ Requires IP configuration
+>
+> See the [RTU Setup Guide](RTU_SETUP.md) for detailed wiring and troubleshooting instructions.
 
 > [!WARNING]
 > ### Important Note on Read-Only Mode (Available since v0.1.5)

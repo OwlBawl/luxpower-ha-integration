@@ -2,8 +2,15 @@
   "config": {
     "step": {
       "user": {
-        "title": "Luxpower Inverter Setup",
-        "description": "Please enter the connection details for your inverter's WiFi dongle. All fields are required.",
+        "title": "Select Communication Protocol",
+        "description": "Choose how to connect to your LuxPower inverter",
+        "data": {
+          "protocol": "Communication Protocol"
+        }
+      },
+      "tcp": {
+        "title": "Modbus TCP Configuration",
+        "description": "Configure connection to your inverter's WiFi dongle",
         "data": {
           "host": "[%key:common::config_flow::data::host%]",
           "port": "[%key:common::config_flow::data::port%]",
@@ -12,7 +19,26 @@
           "poll_interval": "Polling Interval (seconds)",
           "entity_prefix": "Entity Prefix (Optional)",
           "rated_power": "Inverter Rated Power (Watts)",
-          "register_block_size": "Register Block Size (125 normal, 40 for old firmware)",
+          "register_block_size": "Register Block Size",
+          "connection_retries": "Connection Retry Attempts",
+          "read_only": "Read Only Mode",
+          "enable_device_grouping": "Enable Device Grouping"
+        }
+      },
+      "rtu": {
+        "title": "Modbus RTU Configuration",
+        "description": "Configure RS-485/USB serial connection to your inverter",
+        "data": {
+          "serial_port": "Serial Port",
+          "baudrate": "Baud Rate",
+          "parity": "Parity",
+          "stopbits": "Stop Bits",
+          "bytesize": "Data Bits",
+          "slave_id": "Slave ID",
+          "poll_interval": "Polling Interval (seconds)",
+          "entity_prefix": "Entity Prefix (Optional)",
+          "rated_power": "Inverter Rated Power (Watts)",
+          "register_block_size": "Register Block Size",
           "connection_retries": "Connection Retry Attempts",
           "read_only": "Read Only Mode",
           "enable_device_grouping": "Enable Device Grouping"
@@ -21,7 +47,9 @@
     },
     "error": {
       "model_fetch_failed": "Could not communicate with the inverter. Please check the Host, Port, and all Serial Numbers.",
-      "invalid_serial": "Serial numbers must be exactly 10 characters."
+      "model_fetch_failed_rtu": "Could not communicate with the inverter via RTU. Please check the Serial Port, Baud Rate, and Slave ID settings.",
+      "invalid_serial": "Serial numbers must be exactly 10 characters.",
+      "invalid_connection_retries": "Connection retry attempts must be between 1 and 10."
     },
     "abort": {
       "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
@@ -31,15 +59,22 @@
     "step": {
       "init": {
         "title": "Configure Luxpower Inverter",
+        "description": "Update settings for your inverter connection",
         "data": {
           "host": "[%key:common::config_flow::data::host%]",
           "port": "[%key:common::config_flow::data::port%]",
           "dongle_serial": "WiFi Dongle Serial Number",
           "inverter_serial": "Inverter Serial Number",
+          "serial_port": "Serial Port",
+          "baudrate": "Baud Rate",
+          "parity": "Parity",
+          "stopbits": "Stop Bits",
+          "bytesize": "Data Bits",
+          "slave_id": "Slave ID",
           "poll_interval": "Polling Interval (seconds)",
           "entity_prefix": "Entity Prefix (Optional)",
           "rated_power": "Inverter Rated Power (Watts)",
-          "register_block_size": "Register Block Size (125 normal, 40 for old firmware)",
+          "register_block_size": "Register Block Size",
           "connection_retries": "Connection Retry Attempts",
           "read_only": "Read Only Mode",
           "enable_device_grouping": "Enable Device Grouping"
@@ -48,7 +83,9 @@
     },
     "error": {
         "model_fetch_failed": "Could not communicate with the inverter. Please check the Host, Port, and all Serial Numbers.",
-        "invalid_serial": "Serial numbers must be exactly 10 characters."
+        "model_fetch_failed_rtu": "Could not communicate with the inverter via RTU. Please check the Serial Port, Baud Rate, and Slave ID settings.",
+        "invalid_serial": "Serial numbers must be exactly 10 characters.",
+        "invalid_connection_retries": "Connection retry attempts must be between 1 and 10."
     }
   }
 }

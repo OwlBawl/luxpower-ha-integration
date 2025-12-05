@@ -2,50 +2,18 @@
   "config": {
     "step": {
       "user": {
-        "title": "Luxpower Inverter Setup",
-        "description": "Please enter the connection details for your inverter's WiFi dongle.",
+        "title": "Select Communication Protocol",
+        "description": "Choose how to connect to your LuxPower inverter. Select 'Modbus TCP' if you're using a WiFi dongle, or 'Modbus RTU' if you're connecting directly via RS-485 to USB converter.",
         "data": {
-          "host": "IP Address",
-          "port": "Port",
-          "dongle_serial": "WiFi Dongle Serial Number (BAXXXXXXXX)",
-          "inverter_serial": "Inverter Serial Number (XXXXXXXXX)",
-          "poll_interval": "Polling Interval (seconds)",
-          "entity_prefix": "Entity Prefix (Optional)",
-          "rated_power": "Inverter Rated Power (Watts)",
-          "read_only": "Read-Only Mode",
-          "register_block_size": "Register Block Size",
-          "connection_retries": "Connection Retry Attempts",
-          "enable_device_grouping": "Enable Device Grouping"
+          "protocol": "Communication Protocol"
         },
         "data_description": {
-          "host": "The IP address of your inverter's WiFi dongle.",
-          "port": "The communication port, usually 8000.",
-          "dongle_serial": "The 10-character serial number of your WiFi dongle.",
-          "inverter_serial": "The 10-character serial number of your inverter.",
-          "poll_interval": "How often to poll the inverter for data. A lower value means faster updates but more network traffic.",
-          "entity_prefix": "A custom prefix for all entity names (e.g., 'LXP'). Leave blank for no prefix.",
-          "rated_power": "The rated power of your inverter in Watts (e.g., 5000 for a 5kW model). Used for calculations.",
-          "read_only": "If enabled, all interactive controls (switches, numbers, selects, etc.) will be replaced with read-only sensors. This allows you to monitor all settings without being able to change them.",
-          "register_block_size": "Block size for register reads. Use 125 (default) for most inverters. Use 40 for older firmware that doesn't support larger reads.",
-          "connection_retries": "Number of connection retry attempts before giving up (default is 3).",
-          "enable_device_grouping": "Group entities into sub-devices (PV, Grid, EPS, Generator, Battery, Other) for better organization."
+          "protocol": "Modbus TCP is used with WiFi dongles (wireless connection). Modbus RTU is used with RS-485/USB converters like FTDI FT232 or Waveshare (direct serial connection)."
         }
-      }
-    },
-    "error": {
-      "model_fetch_failed": "Could not read inverter model. Please check the Host, Port, and Serial Numbers.",
-      "invalid_serial": "Serial numbers must be exactly 10 characters.",
-      "invalid_connection_retries": "Connection retry attempts must be between 1 and 10."
-    },
-    "abort": {
-      "already_configured": "This inverter is already configured."
-    }
-  },
-  "options": {
-    "step": {
-      "init": {
-        "title": "Configure Luxpower Inverter",
-        "description": "Update the settings for your inverter.",
+      },
+      "tcp": {
+        "title": "Modbus TCP Configuration",
+        "description": "Configure connection to your inverter's WiFi dongle.",
         "data": {
           "host": "IP Address",
           "port": "Port",
@@ -62,7 +30,7 @@
         "data_description": {
           "host": "The IP address of your inverter's WiFi dongle.",
           "port": "The communication port, usually 8000.",
-          "dongle_serial": "The 10-character serial number of your WiFi dongle.",
+          "dongle_serial": "The 10-character serial number of your WiFi dongle (e.g., BAXXXXXXXX).",
           "inverter_serial": "The 10-character serial number of your inverter.",
           "poll_interval": "How often to poll the inverter for data. A lower value means faster updates but more network traffic.",
           "entity_prefix": "A custom prefix for all entity names (e.g., 'LXP'). Leave blank for no prefix.",
@@ -72,12 +40,104 @@
           "connection_retries": "Number of connection retry attempts before giving up (default is 3).",
           "enable_device_grouping": "Group entities into sub-devices (PV, Grid, EPS, Generator, Battery, Other) for better organization."
         }
+      },
+      "rtu": {
+        "title": "Modbus RTU Configuration",
+        "description": "Configure direct RS-485/USB serial connection to your inverter using devices like FTDI FT232 or Waveshare USB-RS485 converters.",
+        "data": {
+          "serial_port": "Serial Port",
+          "baudrate": "Baud Rate",
+          "parity": "Parity",
+          "stopbits": "Stop Bits",
+          "bytesize": "Data Bits",
+          "slave_id": "Modbus Slave ID",
+          "poll_interval": "Polling Interval (seconds)",
+          "entity_prefix": "Entity Prefix (Optional)",
+          "rated_power": "Inverter Rated Power (Watts)",
+          "read_only": "Read-Only Mode",
+          "register_block_size": "Register Block Size",
+          "connection_retries": "Connection Retry Attempts",
+          "enable_device_grouping": "Enable Device Grouping"
+        },
+        "data_description": {
+          "serial_port": "The serial port connected to your RS-485 converter (e.g., /dev/ttyUSB0 on Linux, COM3 on Windows).",
+          "baudrate": "Serial communication speed. LuxPower protocol specification: 19200 bps (default). Other rates available for compatibility.",
+          "parity": "Parity bit for error checking. LuxPower protocol specification: N=None (no parity bits).",
+          "stopbits": "Number of stop bits. LuxPower protocol specification: 1 stop bit.",
+          "bytesize": "Number of data bits per byte. LuxPower protocol specification: 8 data bits.",
+          "slave_id": "Modbus slave address of your inverter (1-247). Default is typically 1. Check your inverter settings.",
+          "poll_interval": "How often to poll the inverter for data. Minimum 1 second per protocol specification. Lower values mean faster updates but more serial bus traffic.",
+          "entity_prefix": "A custom prefix for all entity names (e.g., 'LXP'). Leave blank for no prefix.",
+          "rated_power": "The rated power of your inverter in Watts (e.g., 5000 for a 5kW model). Used for calculations.",
+          "read_only": "If enabled, all interactive controls will be replaced with read-only sensors.",
+          "register_block_size": "Block size for register reads. Use 125 (default) for most inverters. Use 40 for older firmware.",
+          "connection_retries": "Number of connection retry attempts before giving up (default is 3).",
+          "enable_device_grouping": "Group entities into sub-devices (PV, Grid, EPS, Generator, Battery, Other) for better organization."
+        }
       }
     },
     "error": {
-      "model_fetch_failed": "Could not read inverter model. Please check the Host, Port, and Serial Numbers.",
+      "model_fetch_failed": "Could not read inverter model via TCP. Please check the Host, Port, and Serial Numbers.",
+      "model_fetch_failed_rtu": "Could not read inverter model via RTU. Please verify: 1) RS-485 converter is connected, 2) Correct serial port is selected, 3) Baud rate matches inverter settings (typically 9600), 4) Slave ID is correct (typically 1), 5) Physical wiring is correct (A to A+, B to B-).",
       "invalid_serial": "Serial numbers must be exactly 10 characters.",
-      "invalid_connection_retries": "Connection retry attempts must be between 1 and 10."
+      "invalid_connection_retries": "Connection retry attempts must be between 1 and 10.",
+      "unknown": "An unexpected error occurred. Please check the logs for more details."
+    },
+    "abort": {
+      "already_configured": "This inverter is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Configure Luxpower Inverter",
+        "description": "Update the settings for your inverter. Note: Protocol type cannot be changed after initial setup.",
+        "data": {
+          "host": "IP Address",
+          "port": "Port",
+          "dongle_serial": "WiFi Dongle Serial Number",
+          "inverter_serial": "Inverter Serial Number",
+          "serial_port": "Serial Port",
+          "baudrate": "Baud Rate",
+          "parity": "Parity",
+          "stopbits": "Stop Bits",
+          "bytesize": "Data Bits",
+          "slave_id": "Modbus Slave ID",
+          "poll_interval": "Polling Interval (seconds)",
+          "entity_prefix": "Entity Prefix (Optional)",
+          "rated_power": "Inverter Rated Power (Watts)",
+          "read_only": "Read-Only Mode",
+          "register_block_size": "Register Block Size",
+          "connection_retries": "Connection Retry Attempts",
+          "enable_device_grouping": "Enable Device Grouping"
+        },
+        "data_description": {
+          "host": "The IP address of your inverter's WiFi dongle.",
+          "port": "The communication port, usually 8000.",
+          "dongle_serial": "The 10-character serial number of your WiFi dongle.",
+          "inverter_serial": "The 10-character serial number of your inverter.",
+          "serial_port": "The serial port connected to your RS-485 converter.",
+          "baudrate": "Serial communication speed. LuxPower specification: 19200 bps.",
+          "parity": "Parity bit setting. LuxPower specification: N=None (no parity).",
+          "stopbits": "Number of stop bits. LuxPower specification: 1.",
+          "bytesize": "Number of data bits. LuxPower specification: 8.",
+          "slave_id": "Modbus slave address of your inverter (1-247).",
+          "poll_interval": "How often to poll the inverter. Minimum 1 second per protocol specification.",
+          "entity_prefix": "A custom prefix for all entity names (e.g., 'LXP'). Leave blank for no prefix.",
+          "rated_power": "The rated power of your inverter in Watts (e.g., 5000 for a 5kW model). Used for calculations.",
+          "read_only": "If enabled, all interactive controls will be replaced with read-only sensors.",
+          "register_block_size": "Block size for register reads. Use 125 (default) for most inverters. Use 40 for older firmware.",
+          "connection_retries": "Number of connection retry attempts before giving up (default is 3).",
+          "enable_device_grouping": "Group entities into sub-devices (PV, Grid, EPS, Generator, Battery, Other) for better organization."
+        }
+      }
+    },
+    "error": {
+      "model_fetch_failed": "Could not read inverter model via TCP. Please check the Host, Port, and Serial Numbers.",
+      "model_fetch_failed_rtu": "Could not read inverter model via RTU. Please verify your serial connection settings and physical wiring.",
+      "invalid_serial": "Serial numbers must be exactly 10 characters.",
+      "invalid_connection_retries": "Connection retry attempts must be between 1 and 10.",
+      "unknown": "An unexpected error occurred. Please check the logs for more details."
     }
   }
 }

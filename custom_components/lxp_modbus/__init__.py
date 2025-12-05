@@ -22,17 +22,46 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data.setdefault(DOMAIN, {})
     
     # Get configuration values from the config entry
-    host = entry.data[CONF_HOST]
-    port = entry.data[CONF_PORT]
-    dongle_serial = entry.data[CONF_DONGLE_SERIAL]
-    inverter_serial = entry.data[CONF_INVERTER_SERIAL]
+    protocol = entry.data.get(CONF_PROTOCOL, PROTOCOL_TCP)
     poll_interval = entry.data[CONF_POLL_INTERVAL]
+    block_size = entry.data.get(CONF_REGISTER_BLOCK_SIZE, DEFAULT_REGISTER_BLOCK_SIZE)
+    connection_retries = entry.data.get(CONF_CONNECTION_RETRIES, DEFAULT_CONNECTION_RETRIES)
 
     # Create a single asyncio.Lock to prevent read/write race conditions
     lock = asyncio.Lock()
-    block_size = entry.data.get(CONF_REGISTER_BLOCK_SIZE, DEFAULT_REGISTER_BLOCK_SIZE)
-    connection_retries = entry.data.get(CONF_CONNECTION_RETRIES, DEFAULT_CONNECTION_RETRIES)
-    api_client = LxpModbusApiClient(host, port, dongle_serial, inverter_serial, lock, block_size, connection_retries)
+    
+    # Create appropriate client based on protocol
+    if protocol == PROTOCOL_RTU:
+        from .classes.modbus_client import LxpModbusRtuClient
+        
+        api_client = LxpModbusRtuClient(
+            serial_port=entry.data[CONF_SERIAL_PORT],
+            baudrate=entry.data[CONF_BAUDRATE],
+            parity=entry.data[CONF_PARITY],
+            stopbits=entry.data[CONF_STOPBITS],
+            bytesize=entry.data[CONF_BYTESIZE],
+            slave_id=entry.data[CONF_SLAVE_ID],
+            lock=lock,
+            block_size=block_size,
+            connection_retries=connection_retries
+        )
+        _LOGGER.info(f"Initialized Modbus RTU client: {entry.data[CONF_SERIAL_PORT]} @ {entry.data[CONF_BAUDRATE]} baud, Slave ID {entry.data[CONF_SLAVE_ID]}")
+    else:  # TCP
+        host = entry.data[CONF_HOST]
+        port = entry.data[CONF_PORT]
+        dongle_serial = entry.data[CONF_DONGLE_SERIAL]
+        inverter_serial = entry.data[CONF_INVERTER_SERIAL]
+        
+        api_client = LxpModbusApiClient(
+            host=host,
+            port=port,
+            dongle_serial=dongle_serial,
+            inverter_serial=inverter_serial,
+            lock=lock,
+            block_size=block_size,
+            connection_retries=connection_retries
+        )
+        _LOGGER.info(f"Initialized Modbus TCP client: {host}:{port}")
 
     # Create a custom DataUpdateCoordinator with reconnection logic
     class LxpModbusDataUpdateCoordinator(DataUpdateCoordinator):
