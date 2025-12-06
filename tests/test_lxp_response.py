@@ -8,7 +8,7 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from custom_components.lxp_modbus.classes.lxp_response import LxpResponse
+from custom_components.luxpower_modbus.classes.lxp_response import LxpResponse
 from test_data import EXCEPTION_RESPONSES, FUNCTION_193_MESSAGE
 
 class TestLxpResponse:

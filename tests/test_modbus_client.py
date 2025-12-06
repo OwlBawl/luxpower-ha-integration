@@ -12,14 +12,14 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from custom_components.lxp_modbus.classes.modbus_client import LxpModbusApiClient, _is_data_sane, HOLD_TIME_REGISTERS
-from custom_components.lxp_modbus.classes.lxp_response import LxpResponse
-from custom_components.lxp_modbus.classes.lxp_request_builder import LxpRequestBuilder
-from custom_components.lxp_modbus.const import (
+from custom_components.luxpower_modbus.classes.modbus_client import LxpModbusApiClient, _is_data_sane, HOLD_TIME_REGISTERS
+from custom_components.luxpower_modbus.classes.lxp_response import LxpResponse
+from custom_components.luxpower_modbus.classes.lxp_request_builder import LxpRequestBuilder
+from custom_components.luxpower_modbus.const import (
     DEFAULT_CONNECTION_RETRIES, TOTAL_REGISTERS, RESPONSE_OVERHEAD, 
     WRITE_RESPONSE_LENGTH, MAX_PACKET_RECOVERY_ATTEMPTS, PACKET_RECOVERY_TIMEOUT
 )
-from custom_components.lxp_modbus.constants.hold_registers import H_AC_CHARGE_START_TIME, H_AC_CHARGE_END_TIME
+from custom_components.luxpower_modbus.constants.hold_registers import H_AC_CHARGE_START_TIME, H_AC_CHARGE_END_TIME
 
 from test_data import INPUT_RESPONSES, HOLD_RESPONSES
 
