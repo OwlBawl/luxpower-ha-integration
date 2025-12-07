@@ -131,30 +131,34 @@ class LxpModbusConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             try:
                 validate_serial(user_input[CONF_DONGLE_SERIAL])
-                validate_serial(user_input[CONF_INVERTER_SERIAL])
-                
-                # Validate connection retries
-                try:
-                    validate_connection_retries(user_input.get(CONF_CONNECTION_RETRIES, DEFAULT_CONNECTION_RETRIES))
-                except vol.Invalid:
-                    errors[CONF_CONNECTION_RETRIES] = "invalid_connection_retries"
-                
-                if not errors:
-                    model = await get_inverter_model_from_device_tcp(
-                        user_input[CONF_HOST], 
-                        user_input[CONF_PORT], 
-                        user_input[CONF_DONGLE_SERIAL], 
-                        user_input[CONF_INVERTER_SERIAL]
-                    )
-                    if not model:
-                        errors["base"] = "model_fetch_failed"
-                    else:
-                        user_input[CONF_PROTOCOL] = PROTOCOL_TCP
-                        user_input["model"] = model
-                        title = user_input.get(CONF_ENTITY_PREFIX) or "Luxpower Inverter"
-                        return self.async_create_entry(title=title, data=user_input)
             except vol.Invalid:
-                errors["base"] = "invalid_serial"
+                errors[CONF_DONGLE_SERIAL] = "invalid_serial"
+            
+            try:
+                validate_serial(user_input[CONF_INVERTER_SERIAL])
+            except vol.Invalid:
+                errors[CONF_INVERTER_SERIAL] = "invalid_serial"
+                
+            # Validate connection retries
+            try:
+                validate_connection_retries(user_input.get(CONF_CONNECTION_RETRIES, DEFAULT_CONNECTION_RETRIES))
+            except vol.Invalid:
+                errors[CONF_CONNECTION_RETRIES] = "invalid_connection_retries"
+            
+            if not errors:
+                model = await get_inverter_model_from_device_tcp(
+                    user_input[CONF_HOST], 
+                    user_input[CONF_PORT], 
+                    user_input[CONF_DONGLE_SERIAL], 
+                    user_input[CONF_INVERTER_SERIAL]
+                )
+                if not model:
+                    errors["base"] = "model_fetch_failed"
+                else:
+                    user_input[CONF_PROTOCOL] = PROTOCOL_TCP
+                    user_input["model"] = model
+                    title = user_input.get(CONF_ENTITY_PREFIX) or "Luxpower Inverter"
+                    return self.async_create_entry(title=title, data=user_input)
         
         data_schema = vol.Schema({
             vol.Required(CONF_HOST): str,
@@ -171,7 +175,7 @@ class LxpModbusConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         })
         return self.async_show_form(
             step_id="tcp", 
-            data_schema=self.add_suggested_values_to_schema(data_schema, user_input), 
+            data_schema=self.add_suggested_values_to_schema(data_schema, user_input or {}), 
             errors=errors
         )
 
@@ -180,32 +184,28 @@ class LxpModbusConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         errors = {}
         if user_input is not None:
             try:
-                # Validate connection retries
-                try:
-                    validate_connection_retries(user_input.get(CONF_CONNECTION_RETRIES, DEFAULT_CONNECTION_RETRIES))
-                except vol.Invalid:
-                    errors[CONF_CONNECTION_RETRIES] = "invalid_connection_retries"
-                
-                if not errors:
-                    model = await get_inverter_model_from_device_rtu(
-                        user_input[CONF_SERIAL_PORT],
-                        user_input[CONF_BAUDRATE],
-                        user_input[CONF_PARITY],
-                        user_input[CONF_STOPBITS],
-                        user_input[CONF_BYTESIZE],
-                        user_input[CONF_SLAVE_ID]
-                    )
-                    if not model:
-                        errors["base"] = "model_fetch_failed_rtu"
-                    else:
-                        user_input[CONF_PROTOCOL] = PROTOCOL_RTU
-                        user_input["model"] = model
-                        # RTU doesn't use dongle/inverter serials in the same way
-                        # Set placeholder values to maintain compatibility
-                        user_input[CONF_DONGLE_SERIAL] = "RTU_DEVICE"
-                        user_input[CONF_INVERTER_SERIAL] = f"RTU_{user_input[CONF_SLAVE_ID]:010d}"
-                        title = user_input.get(CONF_ENTITY_PREFIX) or "Luxpower Inverter RTU"
-                        return self.async_create_entry(title=title, data=user_input)
+                validate_connection_retries(user_input.get(CONF_CONNECTION_RETRIES, DEFAULT_CONNECTION_RETRIES))
+            except vol.Invalid:
+                errors[CONF_CONNECTION_RETRIES] = "invalid_connection_retries"
+            
+            if not errors:
+                model = await get_inverter_model_from_device_rtu(
+                    user_input[CONF_SERIAL_PORT],
+                    user_input[CONF_BAUDRATE],
+                    user_input[CONF_PARITY],
+                    user_input[CONF_STOPBITS],
+                    user_input[CONF_BYTESIZE],
+                    user_input[CONF_SLAVE_ID]
+                )
+                if not model:
+                    errors["base"] = "model_fetch_failed_rtu"
+                else:
+                    user_input[CONF_PROTOCOL] = PROTOCOL_RTU
+                    user_input["model"] = model
+                    user_input[CONF_DONGLE_SERIAL] = "RTU_DEVICE"
+                    user_input[CONF_INVERTER_SERIAL] = f"RTU_{user_input[CONF_SLAVE_ID]:010d}"
+                    title = user_input.get(CONF_ENTITY_PREFIX) or "Luxpower Inverter RTU"
+                    return self.async_create_entry(title=title, data=user_input)
             except Exception as e:
                 _LOGGER.error(f"RTU configuration error: {e}")
                 errors["base"] = "unknown"
@@ -232,7 +232,7 @@ class LxpModbusConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         })
         return self.async_show_form(
             step_id="rtu", 
-            data_schema=self.add_suggested_values_to_schema(data_schema, user_input), 
+            data_schema=self.add_suggested_values_to_schema(data_schema, user_input or {}), 
             errors=errors
         )
 class LxpModbusOptionsFlow(config_entries.OptionsFlow):
@@ -320,7 +320,7 @@ class LxpModbusOptionsFlow(config_entries.OptionsFlow):
                 vol.Required(CONF_STOPBITS, default=current_config.get(CONF_STOPBITS, DEFAULT_STOPBITS)): vol.In(STOPBITS_OPTIONS),
                 vol.Required(CONF_BYTESIZE, default=current_config.get(CONF_BYTESIZE, DEFAULT_BYTESIZE)): vol.In(BYTESIZE_OPTIONS),
                 vol.Required(CONF_SLAVE_ID, default=current_config.get(CONF_SLAVE_ID, DEFAULT_SLAVE_ID)): vol.All(int, vol.Range(min=1, max=247)),
-                vol.Required(CONF_POLL_INTERVAL, default=current_config.get(CONF_POLL_INTERVAL)): vol.All(int, vol.Range(min=2, max=600)),
+                vol.Required(CONF_POLL_INTERVAL, default=current_config.get(CONF_POLL_INTERVAL)): vol.All(int, vol.Range(min=RTU_MIN_POLL_INTERVAL, max=600)),
                 vol.Optional(CONF_ENTITY_PREFIX, default=current_config.get(CONF_ENTITY_PREFIX, '')): vol.All(str),
                 vol.Required(CONF_RATED_POWER, default=current_config.get(CONF_RATED_POWER)): vol.All(int, vol.Range(min=1000, max=100000)),
                 vol.Optional(CONF_READ_ONLY, default=current_config.get(CONF_READ_ONLY, DEFAULT_READ_ONLY)): bool,

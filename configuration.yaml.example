@@ -1,0 +1,17 @@
+# Add this to your configuration.yaml to see detailed errors
+
+logger:
+  default: warning
+  logs:
+    # Show all config flow errors
+    homeassistant.config_entries: debug
+    
+    # Show integration loading errors
+    homeassistant.loader: debug
+    
+    # Show our integration errors
+    custom_components.lxp_modbus: debug
+    custom_components.lxp_modbus.config_flow: debug
+    
+    # Show Python import errors
+    homeassistant.setup: debug
